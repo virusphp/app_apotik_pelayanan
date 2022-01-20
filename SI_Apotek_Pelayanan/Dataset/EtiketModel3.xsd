@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EtiketModel3" targetNamespace="http://tempuri.org/EtiketModel3.xsd" xmlns:mstns="http://tempuri.org/EtiketModel3.xsd" xmlns="http://tempuri.org/EtiketModel3.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EtiketModel3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EtiketModel3" msprop:Generator_UserDSName="EtiketModel3">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EtiketModel3" msprop:Generator_TableClassName="EtiketModel3DataTable" msprop:Generator_TableVarName="tableEtiketModel3" msprop:Generator_TablePropName="_EtiketModel3" msprop:Generator_RowDeletingName="EtiketModel3RowDeleting" msprop:Generator_RowChangingName="EtiketModel3RowChanging" msprop:Generator_RowEvHandlerName="EtiketModel3RowChangeEventHandler" msprop:Generator_RowDeletedName="EtiketModel3RowDeleted" msprop:Generator_UserTableName="EtiketModel3" msprop:Generator_RowChangedName="EtiketModel3RowChanged" msprop:Generator_RowEvArgName="EtiketModel3RowChangeEvent" msprop:Generator_RowClassName="EtiketModel3Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tanggal" msprop:Generator_ColumnVarNameInTable="columntanggal" msprop:Generator_ColumnPropNameInRow="tanggal" msprop:Generator_ColumnPropNameInTable="tanggalColumn" msprop:Generator_UserColumnName="tanggal" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="no_rm" msprop:Generator_ColumnVarNameInTable="columnno_rm" msprop:Generator_ColumnPropNameInRow="no_rm" msprop:Generator_ColumnPropNameInTable="no_rmColumn" msprop:Generator_UserColumnName="no_rm" type="xs:string" minOccurs="0" />
+              <xs:element name="nama_barang" msprop:Generator_ColumnVarNameInTable="columnnama_barang" msprop:Generator_ColumnPropNameInRow="nama_barang" msprop:Generator_ColumnPropNameInTable="nama_barangColumn" msprop:Generator_UserColumnName="nama_barang" type="xs:string" minOccurs="0" />
+              <xs:element name="jml_obat" msprop:Generator_ColumnVarNameInTable="columnjml_obat" msprop:Generator_ColumnPropNameInRow="jml_obat" msprop:Generator_ColumnPropNameInTable="jml_obatColumn" msprop:Generator_UserColumnName="jml_obat" type="xs:int" minOccurs="0" />
+              <xs:element name="tgl_exp" msprop:Generator_ColumnVarNameInTable="columntgl_exp" msprop:Generator_ColumnPropNameInRow="tgl_exp" msprop:Generator_ColumnPropNameInTable="tgl_expColumn" msprop:Generator_UserColumnName="tgl_exp" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ketminum" msprop:Generator_ColumnVarNameInTable="columnketminum" msprop:Generator_ColumnPropNameInRow="ketminum" msprop:Generator_ColumnPropNameInTable="ketminumColumn" msprop:Generator_UserColumnName="ketminum" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

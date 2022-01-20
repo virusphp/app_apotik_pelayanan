@@ -1,0 +1,27 @@
+
+
+Date:2020-06-11 11:00:39,825
+Thread:[1]
+Level:ERROR
+Logger:Syncfusion.TemplateWizard.Base.IWizardImplementation                         [(null)]
+Message:System.Runtime.InteropServices.COMException (0x8004D745): A reference to the component 'Syncfusion.Shared.Base' already exists in the project.
+   at VSLangProj.References.Add(String bstrPath)
+   at Syncfusion.TemplateWizard.Base.IWizardImplementation.AddReferenceToProject(String refDetails, String selVersion, String frameWorkver, VSProject vsProj)
+
+
+Date:2020-06-11 11:01:33,214
+Thread:[1]
+Level:ERROR
+Logger:Syncfusion.TemplateWizard.Base.IWizardImplementation                         [(null)]
+Message:System.Runtime.InteropServices.COMException (0x8004D745): A reference to the component 'Syncfusion.Shared.Base' already exists in the project.
+   at VSLangProj.References.Add(String bstrPath)
+   at Syncfusion.TemplateWizard.Base.IWizardImplementation.AddReferenceToProject(String refDetails, String selVersion, String frameWorkver, VSProject vsProj)
+
+
+Date:2020-06-11 11:02:38,043
+Thread:[1]
+Level:ERROR
+Logger:Syncfusion.TemplateWizard.Base.IWizardImplementation                         [(null)]
+Message:System.Runtime.InteropServices.COMException (0x8004D745): A reference to the component 'Syncfusion.Shared.Base' already exists in the project.
+   at VSLangProj.References.Add(String bstrPath)
+   at Syncfusion.TemplateWizard.Base.IWizardImplementation.AddReferenceToProject(String refDetails, String selVersion, String frameWorkver, VSProject vsProj)
