@@ -23,6 +23,7 @@ Partial Class FormPenjualanResepEMR
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim btnTelaah As System.Windows.Forms.Button
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPenjualanResepEMR))
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.TabControlAdv1 = New Syncfusion.Windows.Forms.Tools.TabControlAdv()
@@ -90,6 +91,7 @@ Partial Class FormPenjualanResepEMR
         Me.Label18 = New System.Windows.Forms.Label()
         Me.cmbRacikNon = New System.Windows.Forms.ComboBox()
         Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtJam = New System.Windows.Forms.TextBox()
         Me.TabPktKhusus = New Syncfusion.Windows.Forms.Tools.TabPageAdv()
         Me.gridDetailObatKh = New System.Windows.Forms.DataGridView()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -285,11 +287,12 @@ Partial Class FormPenjualanResepEMR
         Me.gridObatJadi = New System.Windows.Forms.DataGridView()
         Me.ButtonOk = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnPrinResep = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.btnObatRacik = New System.Windows.Forms.Button()
         Me.btnObtJadi = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.btnPrinResep = New System.Windows.Forms.Button()
+        btnTelaah = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         CType(Me.TabControlAdv1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlAdv1.SuspendLayout()
@@ -371,6 +374,20 @@ Partial Class FormPenjualanResepEMR
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
+        'btnTelaah
+        '
+        btnTelaah.BackColor = System.Drawing.Color.DarkOrange
+        btnTelaah.Dock = System.Windows.Forms.DockStyle.Top
+        btnTelaah.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        btnTelaah.ForeColor = System.Drawing.Color.Linen
+        btnTelaah.Location = New System.Drawing.Point(0, 190)
+        btnTelaah.Name = "btnTelaah"
+        btnTelaah.Size = New System.Drawing.Size(26, 27)
+        btnTelaah.TabIndex = 4
+        btnTelaah.Text = "T"
+        btnTelaah.UseVisualStyleBackColor = False
+        AddHandler btnTelaah.Click, AddressOf Me.btnTelaah_Click
+        '
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.TabControlAdv1)
@@ -384,14 +401,21 @@ Partial Class FormPenjualanResepEMR
         '
         'TabControlAdv1
         '
+        Me.TabControlAdv1.ActiveTabForeColor = System.Drawing.Color.Empty
         Me.TabControlAdv1.BeforeTouchSize = New System.Drawing.Size(1036, 382)
         Me.TabControlAdv1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabControlAdv1.CloseButtonForeColor = System.Drawing.Color.Empty
+        Me.TabControlAdv1.CloseButtonHoverForeColor = System.Drawing.Color.Empty
+        Me.TabControlAdv1.CloseButtonPressedForeColor = System.Drawing.Color.Empty
         Me.TabControlAdv1.Controls.Add(Me.TabPktUmum)
         Me.TabControlAdv1.Controls.Add(Me.TabPktKhusus)
         Me.TabControlAdv1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlAdv1.FocusOnTabClick = False
+        Me.TabControlAdv1.InActiveTabForeColor = System.Drawing.Color.Empty
         Me.TabControlAdv1.Location = New System.Drawing.Point(3, 16)
         Me.TabControlAdv1.Name = "TabControlAdv1"
+        Me.TabControlAdv1.SeparatorColor = System.Drawing.SystemColors.ControlDark
+        Me.TabControlAdv1.ShowSeparator = False
         Me.TabControlAdv1.Size = New System.Drawing.Size(1036, 382)
         Me.TabControlAdv1.TabIndex = 0
         Me.TabControlAdv1.TabStyle = GetType(Syncfusion.Windows.Forms.Tools.TabRendererMetro)
@@ -462,7 +486,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtQty.ReadOnly = True
         Me.txtQty.Size = New System.Drawing.Size(46, 20)
         Me.txtQty.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtQty.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtQty.TabIndex = 19
         Me.txtQty.Text = "0.00"
         Me.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -504,7 +527,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandIurBayarBulat.ReadOnly = True
         Me.txtGrandIurBayarBulat.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandIurBayarBulat.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandIurBayarBulat.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandIurBayarBulat.TabIndex = 16
         Me.txtGrandIurBayarBulat.Text = "0.00"
         Me.txtGrandIurBayarBulat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -527,7 +549,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandDijaminBulat.ReadOnly = True
         Me.txtGrandDijaminBulat.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandDijaminBulat.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandDijaminBulat.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandDijaminBulat.TabIndex = 15
         Me.txtGrandDijaminBulat.Text = "0.00"
         Me.txtGrandDijaminBulat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -550,7 +571,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotalBulat.ReadOnly = True
         Me.txtGrandTotalBulat.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotalBulat.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotalBulat.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotalBulat.TabIndex = 14
         Me.txtGrandTotalBulat.Text = "0.00"
         Me.txtGrandTotalBulat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -573,7 +593,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandIurBayar.ReadOnly = True
         Me.txtGrandIurBayar.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandIurBayar.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandIurBayar.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandIurBayar.TabIndex = 13
         Me.txtGrandIurBayar.Text = "0.00"
         Me.txtGrandIurBayar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -596,7 +615,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandDijamin.ReadOnly = True
         Me.txtGrandDijamin.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandDijamin.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandDijamin.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandDijamin.TabIndex = 12
         Me.txtGrandDijamin.Text = "0.00"
         Me.txtGrandDijamin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -619,7 +637,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotal.ReadOnly = True
         Me.txtGrandTotal.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotal.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotal.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotal.TabIndex = 11
         Me.txtGrandTotal.Text = "0.00"
         Me.txtGrandTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -832,6 +849,7 @@ Partial Class FormPenjualanResepEMR
         Me.GROU.Controls.Add(Me.Label18)
         Me.GROU.Controls.Add(Me.cmbRacikNon)
         Me.GROU.Controls.Add(Me.Label17)
+        Me.GROU.Controls.Add(Me.txtJam)
         Me.GROU.Dock = System.Windows.Forms.DockStyle.Top
         Me.GROU.Location = New System.Drawing.Point(0, 0)
         Me.GROU.Name = "GROU"
@@ -841,7 +859,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJmlBungkus
         '
-        Me.txtJmlBungkus.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJmlBungkus.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJmlBungkus.BorderColor = System.Drawing.Color.DimGray
         Me.txtJmlBungkus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -855,7 +872,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlBungkus.NullString = ""
         Me.txtJmlBungkus.Size = New System.Drawing.Size(97, 20)
         Me.txtJmlBungkus.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJmlBungkus.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlBungkus.TabIndex = 112
         Me.txtJmlBungkus.Text = "0.00"
         Me.txtJmlBungkus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -905,7 +921,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtIuranSisaBayar
         '
-        Me.txtIuranSisaBayar.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtIuranSisaBayar.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtIuranSisaBayar.BorderColor = System.Drawing.Color.DimGray
         Me.txtIuranSisaBayar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -920,14 +935,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtIuranSisaBayar.NullString = ""
         Me.txtIuranSisaBayar.Size = New System.Drawing.Size(108, 20)
         Me.txtIuranSisaBayar.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtIuranSisaBayar.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtIuranSisaBayar.TabIndex = 97
         Me.txtIuranSisaBayar.Text = "0.00"
         Me.txtIuranSisaBayar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDijamin
         '
-        Me.txtDijamin.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtDijamin.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtDijamin.BorderColor = System.Drawing.Color.DimGray
         Me.txtDijamin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -941,14 +954,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtDijamin.NullString = ""
         Me.txtDijamin.Size = New System.Drawing.Size(97, 20)
         Me.txtDijamin.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtDijamin.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtDijamin.TabIndex = 96
         Me.txtDijamin.Text = "0.00"
         Me.txtDijamin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtJumlahHarga
         '
-        Me.txtJumlahHarga.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJumlahHarga.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJumlahHarga.BorderColor = System.Drawing.Color.DimGray
         Me.txtJumlahHarga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -963,14 +974,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtJumlahHarga.NullString = ""
         Me.txtJumlahHarga.Size = New System.Drawing.Size(91, 20)
         Me.txtJumlahHarga.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJumlahHarga.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJumlahHarga.TabIndex = 95
         Me.txtJumlahHarga.Text = "0.00"
         Me.txtJumlahHarga.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDosisResep
         '
-        Me.txtDosisResep.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtDosisResep.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtDosisResep.BorderColor = System.Drawing.Color.DimGray
         Me.txtDosisResep.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -985,7 +994,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtDosisResep.NullString = ""
         Me.txtDosisResep.Size = New System.Drawing.Size(91, 20)
         Me.txtDosisResep.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtDosisResep.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtDosisResep.TabIndex = 94
         Me.txtDosisResep.Text = "0.00"
         Me.txtDosisResep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1006,14 +1014,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtJumlahJual.NullString = ""
         Me.txtJumlahJual.Size = New System.Drawing.Size(88, 20)
         Me.txtJumlahJual.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJumlahJual.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJumlahJual.TabIndex = 4
         Me.txtJumlahJual.Text = "0.00"
         Me.txtJumlahJual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtHargaJual
         '
-        Me.txtHargaJual.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtHargaJual.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtHargaJual.BorderColor = System.Drawing.Color.DimGray
         Me.txtHargaJual.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1027,14 +1033,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtHargaJual.NullString = ""
         Me.txtHargaJual.Size = New System.Drawing.Size(163, 20)
         Me.txtHargaJual.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtHargaJual.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtHargaJual.TabIndex = 92
         Me.txtHargaJual.Text = "0.00"
         Me.txtHargaJual.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDosis
         '
-        Me.txtDosis.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtDosis.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtDosis.BorderColor = System.Drawing.Color.DimGray
         Me.txtDosis.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1048,14 +1052,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtDosis.NullString = ""
         Me.txtDosis.Size = New System.Drawing.Size(88, 20)
         Me.txtDosis.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtDosis.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtDosis.TabIndex = 91
         Me.txtDosis.Text = "0.00"
         Me.txtDosis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSenPotBeli
         '
-        Me.txtSenPotBeli.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtSenPotBeli.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtSenPotBeli.BorderColor = System.Drawing.Color.DimGray
         Me.txtSenPotBeli.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1069,7 +1071,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtSenPotBeli.NullString = ""
         Me.txtSenPotBeli.Size = New System.Drawing.Size(91, 20)
         Me.txtSenPotBeli.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtSenPotBeli.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtSenPotBeli.TabIndex = 90
         Me.txtSenPotBeli.Text = "0.00"
         Me.txtSenPotBeli.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1107,15 +1108,14 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlHari.BackGroundColor = System.Drawing.SystemColors.Info
         Me.txtJmlHari.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJmlHari.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtJmlHari.ForeColor = System.Drawing.SystemColors.WindowText
         Me.txtJmlHari.IntegerValue = CType(0, Long)
         Me.txtJmlHari.Location = New System.Drawing.Point(841, 62)
         Me.txtJmlHari.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.txtJmlHari.Name = "txtJmlHari"
         Me.txtJmlHari.NullString = ""
         Me.txtJmlHari.Size = New System.Drawing.Size(37, 20)
-        Me.txtJmlHari.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlHari.TabIndex = 5
-        Me.txtJmlHari.Text = "0"
         '
         'Label30
         '
@@ -1165,7 +1165,6 @@ Partial Class FormPenjualanResepEMR
         '
         'DoubleTextBox7
         '
-        Me.DoubleTextBox7.BackGroundColor = System.Drawing.SystemColors.Window
         Me.DoubleTextBox7.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.DoubleTextBox7.BorderColor = System.Drawing.Color.DimGray
         Me.DoubleTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1178,7 +1177,6 @@ Partial Class FormPenjualanResepEMR
         Me.DoubleTextBox7.NullString = ""
         Me.DoubleTextBox7.Size = New System.Drawing.Size(96, 20)
         Me.DoubleTextBox7.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.DoubleTextBox7.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.DoubleTextBox7.TabIndex = 78
         Me.DoubleTextBox7.Text = "0.00"
         Me.DoubleTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1319,6 +1317,14 @@ Partial Class FormPenjualanResepEMR
         Me.Label17.TabIndex = 57
         Me.Label17.Text = "Racik/Non"
         '
+        'txtJam
+        '
+        Me.txtJam.Location = New System.Drawing.Point(313, 22)
+        Me.txtJam.Name = "txtJam"
+        Me.txtJam.Size = New System.Drawing.Size(100, 20)
+        Me.txtJam.TabIndex = 113
+        Me.txtJam.Visible = False
+        '
         'TabPktKhusus
         '
         Me.TabPktKhusus.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -1384,7 +1390,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtQtyKh.ReadOnly = True
         Me.txtQtyKh.Size = New System.Drawing.Size(46, 20)
         Me.txtQtyKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtQtyKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtQtyKh.TabIndex = 21
         Me.txtQtyKh.Text = "0.00"
         Me.txtQtyKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1426,7 +1431,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotalNonPaketBulat.ReadOnly = True
         Me.txtGrandTotalNonPaketBulat.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotalNonPaketBulat.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotalNonPaketBulat.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotalNonPaketBulat.TabIndex = 15
         Me.txtGrandTotalNonPaketBulat.Text = "0.00"
         Me.txtGrandTotalNonPaketBulat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1449,7 +1453,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotalPaketBulat.ReadOnly = True
         Me.txtGrandTotalPaketBulat.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotalPaketBulat.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotalPaketBulat.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotalPaketBulat.TabIndex = 14
         Me.txtGrandTotalPaketBulat.Text = "0.00"
         Me.txtGrandTotalPaketBulat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1472,7 +1475,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotalNonPaket.ReadOnly = True
         Me.txtGrandTotalNonPaket.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotalNonPaket.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotalNonPaket.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotalNonPaket.TabIndex = 12
         Me.txtGrandTotalNonPaket.Text = "0.00"
         Me.txtGrandTotalNonPaket.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1495,7 +1497,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtGrandTotalPaket.ReadOnly = True
         Me.txtGrandTotalPaket.Size = New System.Drawing.Size(150, 20)
         Me.txtGrandTotalPaket.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtGrandTotalPaket.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtGrandTotalPaket.TabIndex = 11
         Me.txtGrandTotalPaket.Text = "0.00"
         Me.txtGrandTotalPaket.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1695,7 +1696,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtTotalPaketLainKh.NullString = ""
         Me.txtTotalPaketLainKh.Size = New System.Drawing.Size(162, 20)
         Me.txtTotalPaketLainKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtTotalPaketLainKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtTotalPaketLainKh.TabIndex = 9
         Me.txtTotalPaketLainKh.Text = "0.00"
         Me.txtTotalPaketLainKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1717,7 +1717,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtTotalPaketBPJSKh.NullString = ""
         Me.txtTotalPaketBPJSKh.Size = New System.Drawing.Size(162, 20)
         Me.txtTotalPaketBPJSKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtTotalPaketBPJSKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtTotalPaketBPJSKh.TabIndex = 8
         Me.txtTotalPaketBPJSKh.Text = "0.00"
         Me.txtTotalPaketBPJSKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1739,7 +1738,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlCapBPJSKh.NullString = ""
         Me.txtJmlCapBPJSKh.Size = New System.Drawing.Size(85, 20)
         Me.txtJmlCapBPJSKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJmlCapBPJSKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlCapBPJSKh.TabIndex = 4
         Me.txtJmlCapBPJSKh.Text = "0.00"
         Me.txtJmlCapBPJSKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1769,7 +1767,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtPaketLainKh.NullString = ""
         Me.txtPaketLainKh.Size = New System.Drawing.Size(88, 20)
         Me.txtPaketLainKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtPaketLainKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtPaketLainKh.TabIndex = 8
         Me.txtPaketLainKh.Text = "0.00"
         Me.txtPaketLainKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1822,7 +1819,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlCapLainKh.NullString = ""
         Me.txtJmlCapLainKh.Size = New System.Drawing.Size(85, 20)
         Me.txtJmlCapLainKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJmlCapLainKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlCapLainKh.TabIndex = 5
         Me.txtJmlCapLainKh.Text = "0.00"
         Me.txtJmlCapLainKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1844,7 +1840,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlObatKh.NullString = ""
         Me.txtJmlObatKh.Size = New System.Drawing.Size(85, 20)
         Me.txtJmlObatKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJmlObatKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlObatKh.TabIndex = 6
         Me.txtJmlObatKh.Text = "0.00"
         Me.txtJmlObatKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1866,7 +1861,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtDosisResepKh.NullString = ""
         Me.txtDosisResepKh.Size = New System.Drawing.Size(85, 20)
         Me.txtDosisResepKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtDosisResepKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtDosisResepKh.TabIndex = 3
         Me.txtDosisResepKh.Text = "0.00"
         Me.txtDosisResepKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1887,14 +1881,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtPaketBPJSKh.NullString = ""
         Me.txtPaketBPJSKh.Size = New System.Drawing.Size(88, 20)
         Me.txtPaketBPJSKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtPaketBPJSKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtPaketBPJSKh.TabIndex = 7
         Me.txtPaketBPJSKh.Text = "0.00"
         Me.txtPaketBPJSKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtHargaJualKh
         '
-        Me.txtHargaJualKh.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtHargaJualKh.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtHargaJualKh.BorderColor = System.Drawing.Color.DimGray
         Me.txtHargaJualKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1908,14 +1900,12 @@ Partial Class FormPenjualanResepEMR
         Me.txtHargaJualKh.NullString = ""
         Me.txtHargaJualKh.Size = New System.Drawing.Size(163, 20)
         Me.txtHargaJualKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtHargaJualKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtHargaJualKh.TabIndex = 92
         Me.txtHargaJualKh.Text = "0.00"
         Me.txtHargaJualKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDosisKh
         '
-        Me.txtDosisKh.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtDosisKh.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtDosisKh.BorderColor = System.Drawing.Color.DimGray
         Me.txtDosisKh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -1929,7 +1919,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtDosisKh.NullString = ""
         Me.txtDosisKh.Size = New System.Drawing.Size(88, 20)
         Me.txtDosisKh.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtDosisKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtDosisKh.TabIndex = 91
         Me.txtDosisKh.Text = "0.00"
         Me.txtDosisKh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -1967,15 +1956,14 @@ Partial Class FormPenjualanResepEMR
         Me.txtJmlHariKh.BackGroundColor = System.Drawing.SystemColors.Info
         Me.txtJmlHariKh.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJmlHariKh.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtJmlHariKh.ForeColor = System.Drawing.SystemColors.WindowText
         Me.txtJmlHariKh.IntegerValue = CType(0, Long)
         Me.txtJmlHariKh.Location = New System.Drawing.Point(841, 60)
         Me.txtJmlHariKh.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.txtJmlHariKh.Name = "txtJmlHariKh"
         Me.txtJmlHariKh.NullString = ""
         Me.txtJmlHariKh.Size = New System.Drawing.Size(37, 20)
-        Me.txtJmlHariKh.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJmlHariKh.TabIndex = 9
-        Me.txtJmlHariKh.Text = "0"
         '
         'Label42
         '
@@ -2360,7 +2348,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJarakEDModel3
         '
-        Me.txtJarakEDModel3.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJarakEDModel3.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJarakEDModel3.BorderColor = System.Drawing.Color.DimGray
         Me.txtJarakEDModel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2374,7 +2361,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJarakEDModel3.NullString = ""
         Me.txtJarakEDModel3.Size = New System.Drawing.Size(137, 20)
         Me.txtJarakEDModel3.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJarakEDModel3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJarakEDModel3.TabIndex = 10
         Me.txtJarakEDModel3.Text = "0.00"
         '
@@ -2389,7 +2375,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJumlahObatEtiketModel3
         '
-        Me.txtJumlahObatEtiketModel3.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJumlahObatEtiketModel3.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJumlahObatEtiketModel3.BorderColor = System.Drawing.Color.DimGray
         Me.txtJumlahObatEtiketModel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2403,7 +2388,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJumlahObatEtiketModel3.NullString = ""
         Me.txtJumlahObatEtiketModel3.Size = New System.Drawing.Size(183, 20)
         Me.txtJumlahObatEtiketModel3.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJumlahObatEtiketModel3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJumlahObatEtiketModel3.TabIndex = 8
         Me.txtJumlahObatEtiketModel3.Text = "0.00"
         '
@@ -2674,7 +2658,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJumlahObatEtiketInfus
         '
-        Me.txtJumlahObatEtiketInfus.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJumlahObatEtiketInfus.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJumlahObatEtiketInfus.BorderColor = System.Drawing.Color.DimGray
         Me.txtJumlahObatEtiketInfus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2688,7 +2671,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJumlahObatEtiketInfus.NullString = ""
         Me.txtJumlahObatEtiketInfus.Size = New System.Drawing.Size(183, 20)
         Me.txtJumlahObatEtiketInfus.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJumlahObatEtiketInfus.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJumlahObatEtiketInfus.TabIndex = 8
         Me.txtJumlahObatEtiketInfus.Text = "0.00"
         '
@@ -2794,7 +2776,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJarakED
         '
-        Me.txtJarakED.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJarakED.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJarakED.BorderColor = System.Drawing.Color.DimGray
         Me.txtJarakED.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2808,7 +2789,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJarakED.NullString = ""
         Me.txtJarakED.Size = New System.Drawing.Size(137, 20)
         Me.txtJarakED.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJarakED.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJarakED.TabIndex = 13
         Me.txtJarakED.Text = "0.00"
         '
@@ -2823,7 +2803,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtJumlahObatEtiket
         '
-        Me.txtJumlahObatEtiket.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtJumlahObatEtiket.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtJumlahObatEtiket.BorderColor = System.Drawing.Color.DimGray
         Me.txtJumlahObatEtiket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2837,7 +2816,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtJumlahObatEtiket.NullString = ""
         Me.txtJumlahObatEtiket.Size = New System.Drawing.Size(183, 20)
         Me.txtJumlahObatEtiket.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtJumlahObatEtiket.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtJumlahObatEtiket.TabIndex = 8
         Me.txtJumlahObatEtiket.Text = "0.00"
         '
@@ -2906,7 +2884,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtQty3
         '
-        Me.txtQty3.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtQty3.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtQty3.BorderColor = System.Drawing.Color.DimGray
         Me.txtQty3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -2921,7 +2898,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtQty3.NullString = ""
         Me.txtQty3.Size = New System.Drawing.Size(51, 20)
         Me.txtQty3.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtQty3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtQty3.TabIndex = 94
         Me.txtQty3.Text = "0.00"
         Me.txtQty3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -3454,13 +3430,15 @@ Partial Class FormPenjualanResepEMR
         '
         'Column3
         '
+        Me.Column3.DataPropertyName = "Pilih"
         Me.Column3.HeaderText = "Pilih"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
+        Me.Column3.Text = "Pilih"
+        Me.Column3.ToolTipText = "Pilih"
         '
         'txtPPN
         '
-        Me.txtPPN.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtPPN.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtPPN.BorderColor = System.Drawing.Color.DimGray
         Me.txtPPN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -3476,7 +3454,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtPPN.NullString = ""
         Me.txtPPN.Size = New System.Drawing.Size(301, 20)
         Me.txtPPN.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtPPN.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtPPN.TabIndex = 100
         Me.txtPPN.Text = "0.00"
         Me.txtPPN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -3493,7 +3470,6 @@ Partial Class FormPenjualanResepEMR
         '
         'txtLaba
         '
-        Me.txtLaba.BackGroundColor = System.Drawing.SystemColors.Window
         Me.txtLaba.BeforeTouchSize = New System.Drawing.Size(301, 20)
         Me.txtLaba.BorderColor = System.Drawing.Color.DimGray
         Me.txtLaba.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -3509,7 +3485,6 @@ Partial Class FormPenjualanResepEMR
         Me.txtLaba.NullString = ""
         Me.txtLaba.Size = New System.Drawing.Size(301, 20)
         Me.txtLaba.SpecialCultureValue = Syncfusion.Windows.Forms.Tools.SpecialCultureValues.None
-        Me.txtLaba.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.txtLaba.TabIndex = 98
         Me.txtLaba.Text = "0.00"
         Me.txtLaba.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -3649,6 +3624,7 @@ Partial Class FormPenjualanResepEMR
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(btnTelaah)
         Me.Panel2.Controls.Add(Me.btnPrinResep)
         Me.Panel2.Controls.Add(Me.Button11)
         Me.Panel2.Controls.Add(Me.btnObatRacik)
@@ -3659,10 +3635,20 @@ Partial Class FormPenjualanResepEMR
         Me.Panel2.Size = New System.Drawing.Size(26, 216)
         Me.Panel2.TabIndex = 1
         '
+        'btnPrinResep
+        '
+        Me.btnPrinResep.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnPrinResep.Location = New System.Drawing.Point(0, 167)
+        Me.btnPrinResep.Name = "btnPrinResep"
+        Me.btnPrinResep.Size = New System.Drawing.Size(26, 23)
+        Me.btnPrinResep.TabIndex = 3
+        Me.btnPrinResep.Text = "P"
+        Me.btnPrinResep.UseVisualStyleBackColor = True
+        '
         'Button11
         '
         Me.Button11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button11.Location = New System.Drawing.Point(0, 163)
+        Me.Button11.Location = New System.Drawing.Point(0, 144)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(26, 23)
         Me.Button11.TabIndex = 2
@@ -3674,9 +3660,9 @@ Partial Class FormPenjualanResepEMR
         Me.btnObatRacik.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnObatRacik.Location = New System.Drawing.Point(0, 63)
         Me.btnObatRacik.Name = "btnObatRacik"
-        Me.btnObatRacik.Size = New System.Drawing.Size(26, 100)
+        Me.btnObatRacik.Size = New System.Drawing.Size(26, 81)
         Me.btnObatRacik.TabIndex = 1
-        Me.btnObatRacik.Text = "RAC I KAN"
+        Me.btnObatRacik.Text = "RAC I K"
         Me.btnObatRacik.UseVisualStyleBackColor = True
         '
         'btnObtJadi
@@ -3688,16 +3674,6 @@ Partial Class FormPenjualanResepEMR
         Me.btnObtJadi.TabIndex = 0
         Me.btnObtJadi.Text = "JAD I"
         Me.btnObtJadi.UseVisualStyleBackColor = True
-        '
-        'btnPrinResep
-        '
-        Me.btnPrinResep.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnPrinResep.Location = New System.Drawing.Point(0, 186)
-        Me.btnPrinResep.Name = "btnPrinResep"
-        Me.btnPrinResep.Size = New System.Drawing.Size(26, 23)
-        Me.btnPrinResep.TabIndex = 3
-        Me.btnPrinResep.Text = "P"
-        Me.btnPrinResep.UseVisualStyleBackColor = True
         '
         'FormPenjualanResepEMR
         '
@@ -4070,7 +4046,6 @@ Partial Class FormPenjualanResepEMR
     Friend WithEvents gridObatRacikan As System.Windows.Forms.DataGridView
     Friend WithEvents Button11 As System.Windows.Forms.Button
     Friend WithEvents Label75 As System.Windows.Forms.Label
-    Friend WithEvents Column3 As DataGridViewButtonColumn
     Friend WithEvents gridPelayananObat As DataGridView
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Pilih As DataGridViewButtonColumn
@@ -4080,4 +4055,6 @@ Partial Class FormPenjualanResepEMR
     Friend WithEvents txtNoSEP As TextBox
     Friend WithEvents lblIteration As Label
     Friend WithEvents btnPrinResep As Button
+    Friend WithEvents txtJam As TextBox
+    Friend WithEvents Column3 As DataGridViewButtonColumn
 End Class

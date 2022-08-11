@@ -1268,6 +1268,7 @@ Public Class FormEditPenjualanResepEMR
             rptNota.SetDatabaseLogon(dbUser, dbPassword)
             rptNota.SetParameterValue("tanggal", Format(DTPTanggalTrans.Value, "yyyy/MM/dd"))
             rptNota.SetParameterValue("notaresep", txtNoResep.Text)
+            rptNota.SetParameterValue("nopermintaan", noPermintaanObat)
             rptNota.SetParameterValue("alamat", txtAlamat.Text)
             rptNota.SetParameterValue("unit", nmSubUnit)
             rptNota.SetParameterValue("totalHarga", txtGrandTotalBulat.DecimalValue)
@@ -3043,6 +3044,7 @@ Public Class FormEditPenjualanResepEMR
                 btnCetakBPJS.Enabled = True
                 'btnCetakLain.Enabled = True
                 btnCetakEtiketKh.Enabled = True
+                ServiceApi.updateTaskAntrianBPJS(txtNoReg.Text, "6")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
@@ -4010,6 +4012,7 @@ Public Class FormEditPenjualanResepEMR
                 btnCetakNota.Enabled = True
                 btnCetakEtiket.Enabled = True
                 btnCetakNota.Focus()
+                ServiceApi.updateTaskAntrianBPJS(txtNoReg.Text, "6")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")

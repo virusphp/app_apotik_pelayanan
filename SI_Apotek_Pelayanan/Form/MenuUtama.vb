@@ -17,6 +17,12 @@ Public Class MenuUtama
     End Sub
 
     Private Sub MenuUtama_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            Shell("Taskkill /f /im SI_Apotek_Pelayanan.exe")
+        Catch ex As Exception
+            MsgBox("Gagal keluar aplikasi", vbCritical, "Kesalahan")
+        End Try
+        Me.Dispose()
         FormLogin.Close()
         CONN.Close()
     End Sub
@@ -341,4 +347,7 @@ Public Class MenuUtama
         Dispose()
     End Sub
 
+    Private Sub RibbonControlAdv2_Click(sender As Object, e As EventArgs) Handles RibbonControlAdv2.Click
+
+    End Sub
 End Class

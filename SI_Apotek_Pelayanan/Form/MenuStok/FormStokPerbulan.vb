@@ -58,8 +58,9 @@ Public Class FormStokPerbulan
             BDStokPerbulan.RemoveFilter()
             'gridObat.DataSource = Nothing
             ''''''' rekap semua barang
-            DA = New OleDb.OleDbDataAdapter("select RTRIM(LTRIM(jenis_obat.jns_obat)) as nmjenis, 
-                    RTRIM(LTRIM(barang_farmasi.nama_barang)) as nmbarang,  0 as stokawal, 
+            DA = New OleDb.OleDbDataAdapter("select 
+                    RTRIM(LTRIM(jenis_obat.jns_obat)) as nmjenis, 
+                    RTRIM(LTRIM(barang_farmasi.nama_barang)) as nmbarang,  0 as stokawal,  
                     0 as terimagdg, 0 as terima1, 0 as terima2, 0 as terima3, 0 as terima4, 0 as terima5, 
                     0 as terima6, 0 as terima7, 0 as terimaunt, 0 as retcekout, 0 as retrajal, 
                     0 as retinap, 0 as kormasuk, 0 as ttlmasuk, 0 as jualresep, 0 as jualbebas, 
@@ -68,7 +69,11 @@ Public Class FormStokPerbulan
                     Round(barang_farmasi.harga_satuan,0) as harga, 
                     0 as jmlharga,
                     RTRIM(LTRIM(barang_farmasi.kd_barang)) as kdbarang, 
-                    RTRIM(LTRIM(barang_farmasi.kd_jns_obat)) as kdjenis from barang_farmasi INNER JOIN jenis_obat ON barang_farmasi.kd_jns_obat=jenis_obat.kd_jns_obat where LEFT(kd_barang,2)='NW' order by jenis_obat.jns_obat,barang_farmasi.nama_barang", CONN)
+                    barang_farmasi.kode_akun108,
+                    RTRIM(LTRIM(barang_farmasi.kd_jns_obat)) as kdjenis
+                    from barang_farmasi 
+                    INNER JOIN jenis_obat ON barang_farmasi.kd_jns_obat=jenis_obat.kd_jns_obat 
+                    where LEFT(kd_barang,2)='NW' order by jenis_obat.jns_obat,barang_farmasi.nama_barang", CONN)
             DSStokPerbulan = New DataSet
             DA.Fill(DSStokPerbulan, "StokPerbulan")
             BDStokPerbulan.DataSource = DSStokPerbulan
@@ -128,7 +133,7 @@ Public Class FormStokPerbulan
 
 
             '''''''''''jual resep 
-            DA = New OleDb.OleDbDataAdapter("select RTRIM(LTRIM(kd_barang)) as kdbarang, jml  from ap_jualr2 where kdbagian='" & pkdapo & "' and Month(tanggal)='" & Month(DTPBulan.Value) & "' and Year(tanggal)='" & Year(DTPTahun.Value) & "'", CONN)
+            DA = New OleDb.OleDbDataAdapter("select RTRIM(LTRIM(kd_barang)) as kdbarang, jml from ap_jualr2 where kdbagian='" & pkdapo & "' and Month(tanggal)='" & Month(DTPBulan.Value) & "' and Year(tanggal)='" & Year(DTPTahun.Value) & "'", CONN)
             DSJualResep = New DataSet
             DA.Fill(DSJualResep, "JualResep")
             BDJualResep.DataSource = DSJualResep
@@ -755,6 +760,7 @@ Public Class FormStokPerbulan
             .Columns(26).DefaultCellStyle.Format = "N0"
             .Columns(26).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             .Columns(27).HeaderText = "Kode Barang"
+            .Columns(28).HeaderText = "Kode Akun 108"
             .Columns(0).Width = 120
             .Columns(1).Width = 200
             .Columns(2).Width = 50
@@ -783,7 +789,8 @@ Public Class FormStokPerbulan
             .Columns(25).Width = 75
             .Columns(26).Width = 80
             .Columns(27).Width = 100
-            .Columns(28).Visible = False
+            .Columns(28).Width = 70
+            .Columns(29).Visible = False
             .ReadOnly = True
             GridWarna()
         End With
@@ -819,7 +826,8 @@ Public Class FormStokPerbulan
             .Columns(25).Width = 75
             .Columns(26).Width = 60
             .Columns(27).Width = 100
-            .Columns(28).Visible = False
+            .Columns(28).Width = 80
+            .Columns(29).Visible = False
             .ReadOnly = True
             GridWarna()
         End With
@@ -1012,13 +1020,24 @@ Public Class FormStokPerbulan
                     .Columns.Add("nmsatuan")
                     .Columns.Add("harga")
                     .Columns.Add("jmlharga")
+                    .Columns.Add("kdbarang")
+                    .Columns.Add("kode_akun108")
                 End With
 
                 For i = 0 To gridObat.RowCount - 2
                     If Not IsDBNull(gridObat.Rows(i).Cells(0).Value) Then
-                        dtExcel.Rows.Add(gridObat.Rows(i).Cells("nmjenis").Value, gridObat.Rows(i).Cells("nmbarang").Value, gridObat.Rows(i).Cells("stokawal").Value, gridObat.Rows(i).Cells("terimagdg").Value, gridObat.Rows(i).Cells("terima1").Value, gridObat.Rows(i).Cells("terima2").Value, gridObat.Rows(i).Cells("terima3").Value, gridObat.Rows(i).Cells("terima4").Value, gridObat.Rows(i).Cells("terima5").Value, gridObat.Rows(i).Cells("terima6").Value, gridObat.Rows(i).Cells("terima7").Value, gridObat.Rows(i).Cells("terimaunt").Value, gridObat.Rows(i).Cells("retcekout").Value, gridObat.Rows(i).Cells("retrajal").Value, gridObat.Rows(i).Cells("retinap").Value, gridObat.Rows(i).Cells("kormasuk").Value, gridObat.Rows(i).Cells("ttlmasuk").Value, gridObat.Rows(i).Cells("jualresep").Value, gridObat.Rows(i).Cells("jualbebas").Value, gridObat.Rows(i).Cells("mutasi").Value, gridObat.Rows(i).Cells("retgudang").Value, gridObat.Rows(i).Cells("korkel").Value, gridObat.Rows(i).Cells("ttlkeluar").Value, gridObat.Rows(i).Cells("jmlstok").Value, gridObat.Rows(i).Cells("nmsatuan").Value, gridObat.Rows(i).Cells("harga").Value, gridObat.Rows(i).Cells("jmlharga").Value)
+                        dtExcel.Rows.Add(gridObat.Rows(i).Cells("nmjenis").Value, gridObat.Rows(i).Cells("nmbarang").Value, gridObat.Rows(i).Cells("stokawal").Value, gridObat.Rows(i).Cells("terimagdg").Value, gridObat.Rows(i).Cells("terima1").Value, gridObat.Rows(i).Cells("terima2").Value, gridObat.Rows(i).Cells("terima3").Value, gridObat.Rows(i).Cells("terima4").Value, gridObat.Rows(i).Cells("terima5").Value, gridObat.Rows(i).Cells("terima6").Value, gridObat.Rows(i).Cells("terima7").Value, gridObat.Rows(i).Cells("terimaunt").Value, gridObat.Rows(i).Cells("retcekout").Value, gridObat.Rows(i).Cells("retrajal").Value, gridObat.Rows(i).Cells("retinap").Value, gridObat.Rows(i).Cells("kormasuk").Value, gridObat.Rows(i).Cells("ttlmasuk").Value, gridObat.Rows(i).Cells("jualresep").Value, gridObat.Rows(i).Cells("jualbebas").Value, gridObat.Rows(i).Cells("mutasi").Value, gridObat.Rows(i).Cells("retgudang").Value, gridObat.Rows(i).Cells("korkel").Value, gridObat.Rows(i).Cells("ttlkeluar").Value, gridObat.Rows(i).Cells("jmlstok").Value, gridObat.Rows(i).Cells("nmsatuan").Value, gridObat.Rows(i).Cells("harga").Value, gridObat.Rows(i).Cells("jmlharga").Value, gridObat.Rows(i).Cells("kdbarang").Value, gridObat.Rows(i).Cells("kode_akun108").Value)
                     End If
                 Next
+
+                dtExcel.Columns.Add("noUrut", GetType(Integer))
+                Dim jumlahrow As Integer = dtExcel.Rows.Count
+                Dim j As Integer = 0
+                While j < jumlahrow
+                    dtExcel.Rows(j)("noUrut") = j + 1
+                    j += 1
+                End While
+
                 Dim excelEngine As New ExcelEngine
                 excelEngine.Excel.DefaultVersion = ExcelVersion.Excel2007
                 Dim workbook As IWorkbook = excelEngine.Excel.Workbooks.Open(Application.StartupPath & "\Report\LaporanStokOpnameXLSIO.xlsx")
@@ -1035,6 +1054,7 @@ Public Class FormStokPerbulan
                 marker.ApplyMarkers()
                 workbook.Version = ExcelVersion.Excel2007
                 workbook.SaveAs("Laporan Stok Opname Unit.xlsx")
+                dtExcel.Columns.Remove("noUrut")
                 workbook.Close()
                 excelEngine.Dispose()
                 System.Diagnostics.Process.Start("Laporan Stok Opname Unit.xlsx")

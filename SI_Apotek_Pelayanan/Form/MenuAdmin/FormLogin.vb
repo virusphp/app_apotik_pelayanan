@@ -2,6 +2,7 @@
 Imports Syncfusion.Windows.Forms
 Imports System.IO
 Imports Newtonsoft.Json
+Imports System.Net
 
 Public Class FormLogin
     Inherits Office2010Form
@@ -94,6 +95,7 @@ Public Class FormLogin
     Private Sub ButtonAdv1_Click(sender As Object, e As EventArgs) Handles ButtonAdv1.Click
         CariKode()
         If DT.Rows.Count > 0 Then
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
             Dim config As SettingApotik = JsonConvert.DeserializeObject(Of SettingApotik)(File.ReadAllText(".\config.json"))
             MenuUtama.MenuMaster.Enabled = True
             MenuUtama.MenuPenjualan.Enabled = True

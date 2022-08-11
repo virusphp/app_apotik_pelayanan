@@ -439,7 +439,6 @@ Public Class FormKartuStok
         End With
     End Sub
 
-
     Private Sub FormKartuStok_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Dispose()
     End Sub

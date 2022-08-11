@@ -3084,7 +3084,7 @@ Partial Class MenuUtama
         Me.RibbonControlAdv2.OfficeMenu.Size = New System.Drawing.Size(12, 65)
         Me.RibbonControlAdv2.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.RibbonControlAdv2.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None
-        Me.RibbonControlAdv2.SelectedTab = Me.tabSystem
+        Me.RibbonControlAdv2.SelectedTab = Me.MenuRetur
         Me.RibbonControlAdv2.ShowRibbonDisplayOptionButton = True
         Me.RibbonControlAdv2.Size = New System.Drawing.Size(1366, 153)
         Me.RibbonControlAdv2.SystemText.QuickAccessDialogDropDownName = "Start menu"

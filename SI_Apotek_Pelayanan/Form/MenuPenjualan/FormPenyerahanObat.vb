@@ -787,6 +787,7 @@ Public Class FormPenyerahanObat
                 Trans.Commit()
                 MsgBox("Transaksi berhasil disimpan", vbInformation, "Informasi")
                 btnSimpan.Enabled = False
+                ServiceApi.updateTaskAntrianBPJS(txtNoRegTab1.Text, "7")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
@@ -894,6 +895,7 @@ Public Class FormPenyerahanObat
                 Trans.Commit()
                 MsgBox("Transaksi berhasil disimpan", vbInformation, "Informasi")
                 btnSimpanTab2.Enabled = False
+                ServiceApi.updateTaskAntrianBPJS(txtNoRegTab1.Text, "7")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")

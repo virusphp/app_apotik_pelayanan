@@ -40,6 +40,8 @@ Partial Class FormDaftarPermintaanResep
         Me.Label19 = New System.Windows.Forms.Label()
         Me.gridPermintaanObat = New System.Windows.Forms.DataGridView()
         Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.txtTotalPermintanResep = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.gpSearch.SuspendLayout()
         Me.groupTanggal.SuspendLayout()
@@ -48,6 +50,8 @@ Partial Class FormDaftarPermintaanResep
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.txtTotalPermintanResep)
         Me.GroupBox1.Controls.Add(Me.gpSearch)
         Me.GroupBox1.Controls.Add(Me.groupTanggal)
         Me.GroupBox1.Controls.Add(Me.btnExcel)
@@ -216,6 +220,7 @@ Partial Class FormDaftarPermintaanResep
         Me.gridPermintaanObat.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gridPermintaanObat.Location = New System.Drawing.Point(0, 67)
         Me.gridPermintaanObat.Name = "gridPermintaanObat"
+        Me.gridPermintaanObat.RowHeadersWidth = 5
         Me.gridPermintaanObat.Size = New System.Drawing.Size(1169, 556)
         Me.gridPermintaanObat.TabIndex = 1
         '
@@ -223,6 +228,23 @@ Partial Class FormDaftarPermintaanResep
         '
         Me.Column3.HeaderText = "Detail"
         Me.Column3.Name = "Column3"
+        Me.Column3.Width = 40
+        '
+        'txtTotalPermintanResep
+        '
+        Me.txtTotalPermintanResep.Location = New System.Drawing.Point(988, 25)
+        Me.txtTotalPermintanResep.Name = "txtTotalPermintanResep"
+        Me.txtTotalPermintanResep.Size = New System.Drawing.Size(150, 20)
+        Me.txtTotalPermintanResep.TabIndex = 36
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(861, 28)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(121, 13)
+        Me.Label4.TabIndex = 37
+        Me.Label4.Text = "Total Permintaan Resep"
         '
         'FormDaftarPermintaanResep
         '
@@ -256,11 +278,13 @@ Partial Class FormDaftarPermintaanResep
     Friend WithEvents btnProsesTab5 As System.Windows.Forms.Button
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents btnExcel As System.Windows.Forms.Button
-    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents groupTanggal As GroupBox
     Friend WithEvents DTPTanggal1 As DateTimePicker
     Friend WithEvents Label1 As Label
     Friend WithEvents DTPTanggal2 As DateTimePicker
     Friend WithEvents gpSearch As GroupBox
     Friend WithEvents txtPencarian As TextBox
+    Friend WithEvents Column3 As DataGridViewButtonColumn
+    Friend WithEvents txtTotalPermintanResep As TextBox
+    Friend WithEvents Label4 As Label
 End Class

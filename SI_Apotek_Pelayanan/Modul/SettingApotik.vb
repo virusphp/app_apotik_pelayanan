@@ -10,4 +10,6 @@
     Public Property pkdsubunit() As String
     Public Property CekKunciStokPenjualan() As String
     Public Property stok0() As String
+    Public Property WsServiceBPJS() As String
+    Public Property TokenWs() As String
 End Class

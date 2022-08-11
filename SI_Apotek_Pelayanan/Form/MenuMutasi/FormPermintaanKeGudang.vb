@@ -571,7 +571,18 @@ Public Class FormPermintaanKeGudang
             CMD.Transaction = Trans
             Try
                 For i = 0 To gridDetailObat.RowCount - 2
-                    sqlPermintaanKeGudang = sqlPermintaanKeGudang + vbCrLf + "insert into ap_mintabrg(tanggal, nota, nomer, kdkasir, nmkasir, kdbagian, nmbagian, nama, idbarang, kdbarang, nmbarang, kdjenis, jml, nmsatuan, harga, jmlharga, tglexp, nobatch, jmlstok, senpot, posting, waktu_permintaan) values ('" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNota.Text) & "', " & i + 1 & ", '" & Trim(FormLogin.LabelKode.Text) & "','" & Trim(FormLogin.LabelNama.Text) & "','" & pkdapo & "', '" & pnmapo & "', '-', '" & gridDetailObat.Rows(i).Cells("idbarang").Value & "', '" & gridDetailObat.Rows(i).Cells("kdbarang").Value & "', '" & Rep(gridDetailObat.Rows(i).Cells("nmbarang").Value) & "', '" & gridDetailObat.Rows(i).Cells("kdjenis").Value & "', '" & Val(gridDetailObat.Rows(i).Cells("jml").Value) & "', '" & gridDetailObat.Rows(i).Cells("nmsatuan").Value & "', '" & Val(gridDetailObat.Rows(i).Cells("harga").Value) & "', '" & Val(gridDetailObat.Rows(i).Cells("jmlharga").Value) & "', '" & Format(gridDetailObat.Rows(i).Cells("tglexp").Value, "yyyy/MM/dd") & "','" & gridDetailObat.Rows(i).Cells("nobatch").Value & "', '" & Val(gridDetailObat.Rows(i).Cells("jmlstok").Value) & "', '" & Val(gridDetailObat.Rows(i).Cells("senpot").Value) & "','" & gridDetailObat.Rows(i).Cells("posting").Value & "','" & Format(DTPTanggalTrans.Value, "HH:mm:ss") & "')"
+                    sqlPermintaanKeGudang = sqlPermintaanKeGudang + vbCrLf + "insert into ap_mintabrg(tanggal, nota, nomer, kdkasir, nmkasir, kdbagian, nmbagian, 
+                        nama, idbarang, kdbarang, nmbarang, kdjenis, jml, nmsatuan, harga, jmlharga, tglexp, nobatch, jmlstok, senpot, posting, waktu_permintaan) 
+                    values (
+                        '" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNota.Text) & "', " & i + 1 & ", 
+                        '" & Trim(FormLogin.LabelKode.Text) & "','" & Trim(FormLogin.LabelNama.Text) & "','" & pkdapo & "', '" & pnmapo & "', '-', 
+                        '" & gridDetailObat.Rows(i).Cells("idbarang").Value & "', '" & gridDetailObat.Rows(i).Cells("kdbarang").Value & "', 
+                        '" & Rep(gridDetailObat.Rows(i).Cells("nmbarang").Value) & "', '" & gridDetailObat.Rows(i).Cells("kdjenis").Value & "', 
+                        '" & Val(gridDetailObat.Rows(i).Cells("jml").Value) & "', '" & gridDetailObat.Rows(i).Cells("nmsatuan").Value & "', 
+                        '" & Val(gridDetailObat.Rows(i).Cells("harga").Value) & "', '" & Val(gridDetailObat.Rows(i).Cells("jmlharga").Value) & "', 
+                        '" & Format(gridDetailObat.Rows(i).Cells("tglexp").Value, "yyyy/MM/dd") & "','" & gridDetailObat.Rows(i).Cells("nobatch").Value & "', 
+                        '" & Val(gridDetailObat.Rows(i).Cells("jmlstok").Value) & "', '" & Val(gridDetailObat.Rows(i).Cells("senpot").Value) & "',
+                        '" & gridDetailObat.Rows(i).Cells("posting").Value & "','" & Format(DTPTanggalTrans.Value, "HH:mm:ss") & "')"
                 Next
 
                 CMD.CommandText = sqlPermintaanKeGudang

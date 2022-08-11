@@ -7,6 +7,8 @@ Module koneksi
     Public dbUser As String
     Public dbPassword As String
     Public dbName As String
+    Public WsService As String
+    Public WsToken As String
     Public pkdapo, pnmapo, pkdnota, psts_stok, pkdsubunit, CekKunciStokPenjualan, stok0 As String
     Public sLocalConn As String
     'Public CONN As SqlConnection
@@ -38,9 +40,17 @@ Module koneksi
         dbUser = config.dbUser
         dbPassword = Enkripsi.Dekrip(config.dbPassword)
         dbName = config.dbName
+        WsService = config.WsServiceBPJS
+        WsToken = config.TokenWs
         'sLocalConn = "server=" & dbServer & ";user id=" & dbUser & ";" & _
         '             "password=" & dbPassword & ";database=" & dbName
         sLocalConn = "Provider=SQLOLEDB; Data Source=" & dbServer & "; Initial Catalog=" & dbName & "; Persist Security Info=True;User ID=" & dbUser & "; Password=" & dbPassword & ""
+    End Sub
+
+    Public Sub GetDataSettingWS()
+        Dim config As SettingApotik = JsonConvert.DeserializeObject(Of SettingApotik)(File.ReadAllText(Application.StartupPath & "\config.json"))
+        WsService = config.WsServiceBPJS
+        WsToken = config.TokenWs
     End Sub
 
     Public Function DatabaseConnected(Optional ByVal Server As String = "", _

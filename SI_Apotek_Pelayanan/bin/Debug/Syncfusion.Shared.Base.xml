@@ -7310,6 +7310,7 @@
             Default size of the control
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "F:Syncfusion.Windows.Forms.ColorUIControl.defaultsize" -->
         <!-- Badly formed XML comment ignored for member "F:Syncfusion.Windows.Forms.ColorUIControl.m_sUserTabText" -->
         <member name="F:Syncfusion.Windows.Forms.ColorUIControl.m_userTabPage">
             <summary>
@@ -7634,6 +7635,11 @@
              <summary>
             Assigns the value for Oldvalue
              </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.ColorUIControl.ColorEditorTabControl.scalefactor">
+            <summary>
+            Assigns the scale factor
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.ColorUIControl.ColorEditorTabControl.WndProc(System.Windows.Forms.Message@)">
              <summary>
@@ -10056,6 +10062,11 @@
             </summary>
             <param name="formattedText"></param>
             <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.NumberTextBoxBase.ResetBackGroundColor">
+            <summary>
+            Resets the ControlBackColor property to its default value.
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.NumberTextBoxBase.ResetControlBackColor">
             <summary>
@@ -13073,6 +13084,45 @@
         <member name="P:Syncfusion.Windows.Forms.ControlDrawing.Offset">
             <summary></summary>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.DpiAware">
+            <summary>
+            Represents a class that provides support to get the current DPI value and calculate the values based on the current DPI values.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.DpiAware.graphics">
+            <summary>
+            The <see cref="T:System.Drawing.Graphics"/> which is used to calculate the DPI value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.DpiAware.GetImage(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Gets the image file from given assembly based on the DPI scaling factor.
+            If the DPI scaling is greater than 175 then returns the high DPI image, otherwise returns the default image.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> used to read the image file.</param>
+            <param name="folderPath">The string contains the folder path.</param>
+            <param name="imageName">The string value represents the name of the image file. 
+            The imageName must contains the extension like AddNewRowIcon.png or AddNewRowIcon.bmp </param>
+            <returns>Returns the image file from specified folder path.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.DpiAware.LogicalToDeviceUnits(System.Single)">
+            <summary>
+            Gets an equivalent value based on the current DPI value.
+            </summary>
+            <param name="value">The float value.</param>
+            <returns>Returns the value based on DPI value.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.DpiAware.GetCurrentDpi">
+            <summary>
+            Gets the current DPI value of the device.
+            </summary>
+            <returns>Returns the current DPI value of the device.</returns>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.DpiAware.Graphics">
+            <summary>
+            Gets the <see cref="P:Syncfusion.Windows.Forms.DpiAware.Graphics"/> used to calculate the DPI value of the device.
+            </summary>
+        </member>
         <member name="T:Syncfusion.Drawing.INonClientPaintingSupport">
             <internalonly/>
             <summary></summary>
@@ -14392,6 +14442,11 @@
             Occurs when <see cref="P:Syncfusion.Windows.Forms.Office2007Form.ColorScheme"/> property is changed.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.MetroForm.innerBorderVisibility">
+            <summary>
+            Variable to maintain the visibility of the inner border of the Form.
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.MetroForm.refresh">
             <summary>
             variable to check whether the mouse is moved over the caption image
@@ -14737,6 +14792,11 @@
         <member name="P:Syncfusion.Windows.Forms.MetroForm.ShowMaximizeBox">
             <summary>
             Gets / set the value to enable the MaximizeBox
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.MetroForm.InnerBorderVisibility">
+            <summary>
+            Gets or sets the visibility of the inner border of the Form.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.MetroForm.ShowMinimizeBox">
@@ -15141,6 +15201,20 @@
             Constructor for MessageBoxMetroStyleFormAdv
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxMetroStyleFormAdv.GetMaximumWidth(System.Windows.Forms.DialogResult[],System.Int32)">
+            <summary>
+            Method to set same width for all Buttons in the MessageBoxAdv
+            </summary>
+            <param name="buttonsAdv">Collection of buttons</param>
+            <param name="maximumWidth">Greater width</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxMetroStyleFormAdv.GetPanelHeight">
+            <summary>
+            Method to calculate the height of the panel of MessageBoxAdv
+            </summary>
+            <returns>Panel height</returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.MessageBoxMetroStyleFormAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size,System.String)">
             <summary>
             Initializes the new instance for MessageBoxMetroStyleFormAdv class.
@@ -15156,6 +15230,11 @@
             <param name="helpButtonClickHandler">click event data</param>
             <param name="image">image</param>
             <param name="sizeImage">sizing image</param>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.MessageBoxMetroStyleFormAdv.canInitializeCustomButtons">
+            <summary>
+            Variable which indicates whether custom buttons are already initialized or not
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.MessageBoxMetroStyleFormAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size)">
             <summary>
@@ -15373,6 +15452,11 @@
         <member name="F:Syncfusion.Windows.Forms.Office2010Form.dropShadow">
             <summary>
             Variable to Gets or Set Value to Drop Shadow to the form.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2010Form.managedColorTable">
+            <summary>
+            Gets or sets the managed color table value.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Office2010Form.ResetDropShadow">
@@ -16420,6 +16504,20 @@
             Initializes the new instance for Office2010StyleMessageBoxAdv class
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2010StyleMessageBoxAdv.GetMaximumWidth(System.Windows.Forms.DialogResult[],System.Int32)">
+            <summary>
+            Method to set same width for all Buttons in the MessageBoxAdv
+            </summary>
+            <param name="buttonsAdv">Collection of buttons</param>
+            <param name="maximumWidth">Greater width</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2010StyleMessageBoxAdv.GetPanelHeight">
+            <summary>
+            Method to calculate the height of the panel of MessageBoxAdv
+            </summary>
+            <returns>Panel height</returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Office2010StyleMessageBoxAdv.#ctor">
             <summary>
             Initializes the new instance for Office2010StyleMessageBoxAdv class
@@ -16576,6 +16674,11 @@
             <param name="helpButtonClickHandler">click event data</param>
             <param name="image">image</param>
             <param name="sizeImage">sizing image</param>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2010StyleMessageBoxAdv.canInitializeCustomButtons">
+            <summary>
+            Variable which indicates whether custom buttons are already initialized or not
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Office2010StyleMessageBoxAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size)">
             <summary>
@@ -16844,6 +16947,20 @@
             Initializes the new instance for Office2013StyleMessageBoxAdv class
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.GetMaximumWidth(System.Windows.Forms.DialogResult[],System.Int32)">
+            <summary>
+            Method to set same width for all Buttons in the MessageBoxAdv
+            </summary>
+            <param name="buttonsAdv">Collection of buttons</param>
+            <param name="maximumWidth">Greater width</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.GetPanelHeight">
+            <summary>
+            Method to calculate the height of the panel of MessageBoxAdv
+            </summary>
+            <returns>Panel height</returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size)">
             <summary>
             Initializes the new instance for Office2013StyleMessageBoxAdv.
@@ -16969,6 +17086,11 @@
         <member name="F:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.m_helpButtonClicked">
             <summary>
             Variable for CancelEventHandler
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.canInitializeCustomButtons">
+            <summary>
+            Variable which indicates whether custom buttons are already initialized or not
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Office2013StyleMessageBoxAdv.s_buttons">
@@ -17447,6 +17569,12 @@
             Initializes the new instance for Office2016StyleMessageBoxAdv class.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.GetPanelHeight">
+            <summary>
+            Method to calculate the height of the panel of MessageBoxAdv
+            </summary>
+            <returns>Panel height</returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size)">
             <summary>
             Initializes the new instance for Office2016StyleMessageBoxAdv.
@@ -17574,6 +17702,11 @@
             Variable for CancelEventHandler
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.canInitializeCustomButtons">
+            <summary>
+            Variable which indicates whether custom buttons are already initialized or not
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.s_buttons">
             <summary>
             Static variable for buttons
@@ -17624,6 +17757,14 @@
             <summary>
             Click Event for Custom Buttons
             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.GetMaximumWidth(System.Windows.Forms.DialogResult[],System.Int32)">
+            <summary>
+            Method to set same width for all Buttons in the MessageBoxAdv
+            </summary>
+            <param name="buttonsAdv">Collection of buttons</param>
+            <param name="maximumWidth">Greater width</param>
+            <returns></returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Office2016StyleMessageBoxAdv.InitializeButtons">
             <summary>
@@ -20476,6 +20617,11 @@
             </summary>
              
         </member>
+        <member name="F:Syncfusion.Windows.Forms.SkinManager.applicationVisualTheme">
+            <summary>
+            Get or set the Visual theme 
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.SkinManager.ContainsSkinManager">
             <summary>
             Constructor
@@ -20515,6 +20661,11 @@
             Get or Set the control to Change the skin.
             </summary>
              
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.SkinManager.ApplicationVisualTheme">
+            <summary>
+            Get or set the Visual theme 
+            </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Utils.CornerRadiusHelper">
             <summary>
@@ -24648,6 +24799,16 @@
             Holds the Collapsed Panel Backcolor in Normal state
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.m_CollapsedPanelHoverBackColor">
+            <summary>
+            Holds the Collapsed Panel Backcolor in Hover state
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.m_collapsedPanelSelectedBackColor">
+            <summary>
+            Holds the Collapsed DropDown button Backcolor on Selected state
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.m_CollapsedDropDownButtonHoverBackColor">
             <summary>
             Holds the Collapsed DropDown button Backcolor on Hover state
@@ -24708,6 +24869,16 @@
             Holds the Overflow Icon  Color
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.m_ToolTipBackColor">
+            <summary>
+            Holds the TootTip backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.m_ToolTipForeColor">
+            <summary>
+            Holds the TootTip backcolor
+            </summary>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.Office2016Style">
             <summary>
             GroupBar Visual Style
@@ -24726,6 +24897,16 @@
         <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.CollapsedPanelNormalBackColor">
             <summary>
             Gets the Collapsed panel Backcolor in Normal state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.CollapsedPanelHoverBackColor">
+            <summary>
+            Gets the Collapsed panel Backcolor in Hover state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.CollapsedPanelSelectedBackColor">
+            <summary>
+            Gets the Collapsed Dropdown Button Selected Backcolor
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.CollapsedDropDownButtonHoverBackColor">
@@ -24786,6 +24967,16 @@
         <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.OverflowForeColor">
             <summary>
             Gets the Overflow Icon  Color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.ToolTipBackColor">
+            <summary>
+            Gets the TootTip backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ThemeColors.ToolTipForeColor">
+            <summary>
+            Gets the TootTip backcolor
             </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.BorderColors">
@@ -24851,6 +25042,11 @@
             The collection of items present in the GroupBar can be accessed through the control's 
             <see cref="P:Syncfusion.Windows.Forms.Tools.GroupBar.GroupBarItems"/> property.
             </remarks>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupBarItem.isBackColorChanged">
+            <summary>
+            Gets or sets a value indicating whether background color of GroupBarItem is changed or not.
+            </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.GroupBarItem.iNavPaneImage">
             <summary>
@@ -26770,6 +26966,12 @@
             has been jitted (Just in Time)
             </summary>
         </member>
+        <member name="P:Syncfusion.Windows.Forms.ScrollControl.Cursor">
+            <summary>
+            Gets / sets the cursor that is displayed when the mouse pointer is over the control.
+            </summary>
+            <value>A <see cref="T:System.Windows.Forms.Cursor"/> object.</value>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.ScrollControl.AutoScrolling">
             <summary>
             Disables or specifies the direction for automatic scrolling when the user drags
@@ -27476,6 +27678,11 @@
             Colors for Office2010 visual style.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupBar.touchDown">
+             <summary>
+            Indcates the touch down is enabled or not. 
+             </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.GroupBar.CTRLSIZE">
             <summary>
             Default size of the control
@@ -27505,6 +27712,23 @@
              <summary>
             Collapsedwidth
              </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupBar.isBarItemBackColorChangedInternally">
+            <summary>
+            Gets or sets a value indicating whether GroupBarItem background color is changed internally or not.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupBar.ApplyToolTipStyle">
+            <summary>
+            Method to apply office2016 style to Tooltip
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupBar.DrawOffice2016ToolTip(System.Object,System.Windows.Forms.DrawToolTipEventArgs)">
+            <summary>
+            Draws office2016 theme tooltip
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.GroupBar.style">
             <summary>
@@ -27679,6 +27903,15 @@
             <param name="gfxTarget">A <see cref="T:System.Drawing.Graphics"/> object.</param>
             <param name="nindex">The zero-based index of the <see cref="T:Syncfusion.Windows.Forms.Tools.GroupBarItem"/> to be drawn.</param>
             <param name="rcbar">A <see cref="T:System.Drawing.Rectangle"/> value specifying the GroupBarItem bounds.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupBar.ApplyGroupBarItemBackground(System.Drawing.Graphics,Syncfusion.Windows.Forms.Tools.GroupBarItem,System.Drawing.Rectangle,System.Drawing.Brush)">
+            <summary>
+            Helps to apply the background color of GroupBarItem.
+            </summary>
+            <param name="graphics">graphics to draw on</param>
+            <param name="item">group bar item</param>
+            <param name="virtualRect">rectangle to fill the back color</param>
+            <param name="themeBrush">back color</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.GroupBar.DrawSelectedGroupClientBorder(System.Drawing.Graphics,System.Drawing.Rectangle)">
             <summary>
@@ -29342,6 +29575,11 @@
             GroupViev orientation.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupView.visualTheme">
+            <summary>
+            Get or Set of Skin Manager Interface
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.GroupView.SetFlowItemBounds(System.Int32,System.Int32,System.Drawing.Rectangle@)">
             <summary>
             Gets the GroupViewItem Bounds.
@@ -29368,6 +29606,11 @@
             ArrayList visible items.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupView.metroBackColor">
+            <summary>
+            Holds the backcolor of metro theme
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.GroupView.CTRLSIZE">
             <summary>
             Default size of the control
@@ -29381,6 +29624,28 @@
         <member name="M:Syncfusion.Windows.Forms.Tools.GroupView.ResetHighlightTextOffset">
             <summary>
             Resets the <see cref="P:Syncfusion.Windows.Forms.Tools.GroupView.HighlightTextOffset"/> property to its default value.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupView.office2016ColorScheme">
+            <summary>
+            Holds the office2016 colorscheme 
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupView.ResetOffice2016ColorScheme">
+            <summary>
+            Reset the Office2016ColorScheme
+            </summary>
+            
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupView.ShouldSerializeOffice2016ColorScheme">
+            <summary>
+            Serializes the Office2016ColorScheme
+            </summary>
+            
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupView.m_Style">
+            <summary>
+            Holds the style 
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.GroupView.ResetStyle">
@@ -29801,9 +30066,19 @@
             </summary>
             <value>A <see cref="T:System.Drawing.Point"/> value.</value>
         </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupView.GroupViewRenderer">
+            <summary>
+            Gets the office2016 style colors respective to the style
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupView.Office2016ColorScheme">
+            <summary>
+            Gets or sets the office2016 colorscheme 
+            </summary>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.GroupView.Style">
             <summary>
-            Indicates the current style of the control.
+            Gets or sets the style 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.GroupView.SelectedImageOffset">
@@ -30182,6 +30457,938 @@
         <member name="T:Syncfusion.Windows.Forms.Tools.GroupViewControlAccessibleObject">
             <summary>
             ControlAccessibleObject derived class that implements the Accessibility object for the GroupView control.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.GroupViewRenderer">
+            <summary>
+            This class represents renderer class for office2016 theme 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewBackColor">
+             <summary>
+            Holds the backcolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewForeColor">
+             <summary>
+            Holds the forecolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewBorderColor">
+             <summary>
+            Holds the border color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewItemSelectedBorderColor">
+             <summary>
+            Holds the item selected border color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewItemHighlightedBorderColor">
+             <summary>
+            Holds the item highlighted border color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewItemPressedBorderColor">
+             <summary>
+            Holds the item pressed border color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewHighlightedItemBackColor">
+             <summary>
+            Holds the item highlighted backcolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewSelectedItemBackColor">
+             <summary>
+            Holds the item selected backcolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewSelectedHighlightedItemBackColor">
+             <summary>
+            Holds the item selected and highlighted backcolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewPressedItemBackColor">
+             <summary>
+            Holds the item pressed backcolor 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewHighlightedTextColor">
+             <summary>
+            Holds the item highlighted text color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewSelectedTextColor">
+             <summary>
+            Holds the item selected text color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewSelectedHighlightedTextColor">
+             <summary>
+            Holds the selected and highlighted text color 
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewPressedTextColor">
+            <summary>
+            Holds the item pressed color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewDisabledBackColor">
+            <summary>
+            Holds the disabled backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewDisabledBorderColor">
+            <summary>
+            Holds the disabled border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewDisabledForeColor">
+            <summary>
+            Holds the disabled forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewScrollButtonBackColor">
+            <summary>
+            Holds the scrollbutton backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewScrollButtonPressedBackColor">
+            <summary>
+            Holds the scrollbutton pressed backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewScrollButtonForeColor">
+            <summary>
+            Holds the scrollbutton forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewScrollButtonBorderColor">
+            <summary>
+            Holds the scrollbutton border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.groupViewDragDropLineColor">
+            <summary>
+            Holds the dragdrap line color 
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GetColorTable(Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme)">
+            <summary>
+            Constructor for renderer class
+            </summary>
+            <param name="theme">Theme of GroupView</param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewBackColor">
+            <summary>
+            Gets the backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewForeColor">
+            <summary>
+            Gets the forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewItemSelectedBorderColor">
+            <summary>
+            Gets the item selected border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewItemHighlightedBorderColor">
+            <summary>
+            Gets the item highlighted border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewItemPressedBorderColor">
+            <summary>
+            Gets the item pressed border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewBorderColor">
+            <summary>
+            Gets the border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewHighlightedItemBackColor">
+            <summary>
+            Gets the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewSelectedItemBackColor">
+             <summary>
+            Gets the item selected backcolor
+             </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Gets the item selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewPressedItemBackColor">
+            <summary>
+            Gets the item pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewHighlightedTextColor">
+            <summary>
+            Gets the item highlighted text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewSelectedTextColor">
+            <summary>
+            Gets the item selected text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewSelectedHighlightedTextColor">
+             <summary>
+            Gets the item selected and highlighted text color
+             </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewPressedTextColor">
+            <summary>
+            Gets the item pressed text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewDisabledBackColor">
+            <summary>
+            Gets the disabled backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewDisabledForeColor">
+            <summary>
+            Gets the disabled forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewDisabledBorderColor">
+            <summary>
+            Gets the disabled border Color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewScrollButtonBackColor">
+            <summary>
+            Gets the scrollbutton backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewScrollButtonPressedBackColor">
+            <summary>
+            Gets the scrollbutton pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewScrollButtonForeColor">
+            <summary>
+            Gets the scrollbutton forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewScrollButtonBorderColor">
+            <summary>
+            Gets the scrollbutton border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.GroupViewRenderer.GroupViewDragDropLineColor">
+            <summary>
+            Gets the dragdrop line color
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer">
+            <summary>
+            This class represents renderer class for office2016 white theme
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewBackColor">
+            <summary>
+            Holds the backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewForeColor">
+            <summary>
+             Holds the forecolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewBorderColor">
+            <summary>
+             Holds the border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewItemSelectedBorderColor">
+            <summary>
+             Holds the item selected border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewItemHighlightedBorderColor">
+            <summary>
+             Holds the item highlight border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewItemPressedBorderColor">
+            <summary>
+             Holds the item pressed border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewHighlightedItemBackColor">
+            <summary>
+             Holds the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewSelectedItemBackColor">
+            <summary>
+             Holds the selected item backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewSelectedHighlightedItemBackColor">
+            <summary>
+             Holds the selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewPressedItemBackColor">
+            <summary>
+             Holds the pressed item backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewHighlightedTextColor">
+            <summary>
+             Holds the item highlight text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewSelectedTextColor">
+            <summary>
+             Holds the item selected text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewSelectedHighlightedTextColor">
+            <summary>
+             Holds the item selected and highlighted text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewPressedTextColor">
+            <summary>
+             Holds the item pressed text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewDisabledBackColor">
+            <summary>
+            Holds the disabled backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewDisabledBorderColor">
+            <summary>
+            Holds the disabled border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewDisabledForeColor">
+            <summary>
+            Holds the disabled forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewScrollButtonBackColor">
+            <summary>
+            Holds the scrollbutton backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewScrollButtonPressedBackColor">
+            <summary>
+            Holds the scrollbutton pressed backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewScrollButtonForeColor">
+            <summary>
+            Holds the scrollbutton forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewScrollButtonBorderColor">
+            <summary>
+            Holds the scrollbutton border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.groupViewDragDropLineColor">
+            <summary>
+            Holds the dragdrap line color 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewBackColor">
+            <summary>
+            Gets the backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewForeColor">
+            <summary>
+            Gets the forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewBorderColor">
+            <summary>
+            Gets the border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewItemSelectedBorderColor">
+            <summary>
+            Gets the selected item border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewItemHighlightedBorderColor">
+            <summary>
+            Gets the item highlighted border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewItemPressedBorderColor">
+            <summary>
+            Gets the item pressed border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewHighlightedItemBackColor">
+            <summary>
+            Gets the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewSelectedItemBackColor">
+            <summary>
+            Gets the item selected backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Gets the item selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewPressedItemBackColor">
+            <summary>
+            Gets the item pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewHighlightedTextColor">
+            <summary>
+            Gets the item highlighted text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewSelectedTextColor">
+            <summary>
+            Gets the item selected text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewSelectedHighlightedTextColor">
+            <summary>
+            Gets the selected and highlighted item color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewPressedTextColor">
+            <summary>
+            Gets the item pressed text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewDisabledBackColor">
+            <summary>
+            Gets the disabled backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewDisabledForeColor">
+            <summary>
+            Gets the disabled forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewDisabledBorderColor">
+            <summary>
+            Gets the disabled border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewScrollButtonBackColor">
+            <summary>
+            Gets the scrollbutton backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewScrollButtonPressedBackColor">
+            <summary>
+            Gets the scrollbutton pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewScrollButtonForeColor">
+            <summary>
+            Gets the scrollbutton forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewScrollButtonBorderColor">
+            <summary>
+            Gets the scrollbutton border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteGroupViewRenderer.GroupViewDragDropLineColor">
+            <summary>
+            Gets the dragdrop line color
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer">
+            <summary>
+            This class represents rendered class for office2016 darkgray theme
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewBackColor">
+            <summary>
+            Holds the backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewForeColor">
+            <summary>
+            Holds the forecolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewBorderColor">
+             <summary>
+            Holds the border color
+             </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewItemSelectedBorderColor">
+            <summary>
+            Holds the selected Border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewItemHighlightedBorderColor">
+            <summary>
+            Holds the highlighted border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewItemPressedBorderColor">
+            <summary>
+            Holds the pressed border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewHighlightedItemBackColor">
+            <summary>
+            Holds the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewSelectedItemBackColor">
+            <summary>
+            Holds the item selected backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Holds the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewPressedItemBackColor">
+            <summary>
+            Holds the pressed item backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewHighlightedTextColor">
+            <summary>
+            Holds the highlighted item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewSelectedTextColor">
+            <summary>
+            Holds the selected item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewSelectedHighlightedTextColor">
+            <summary>
+            Holds the selected and highlighted item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewPressedTextColor">
+            <summary>
+            Holds the pressed item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewDisabledBackColor">
+            <summary>
+            Holds the disabled backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewDisabledBorderColor">
+            <summary>
+            Holds the disabled border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewDisabledForeColor">
+            <summary>
+            Holds the disabled forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewScrollButtonBackColor">
+            <summary>
+            Holds the scrollbutton backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewScrollButtonPressedBackColor">
+            <summary>
+            Holds the scrollbutton pressed backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewScrollButtonForeColor">
+            <summary>
+            Holds the scrollbutton forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewScrollButtonBorderColor">
+            <summary>
+            Holds the scrollbutton border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.groupViewDragDropLineColor">
+            <summary>
+            Holds the dragdrap line color 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewBackColor">
+            <summary>
+            Gets the backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewForeColor">
+            <summary>
+            Gets the forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewBorderColor">
+            <summary>
+            Gets the border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewItemSelectedBorderColor">
+            <summary>
+            Gets the selected item border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewItemHighlightedBorderColor">
+            <summary>
+            Gets the item highlighted border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewItemPressedBorderColor">
+            <summary>
+            Gets the item pressed border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewHighlightedItemBackColor">
+            <summary>
+            Gets the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewSelectedItemBackColor">
+            <summary>
+            Gets the item selected backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Gets the item selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewPressedItemBackColor">
+            <summary>
+            Gets the item pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewHighlightedTextColor">
+            <summary>
+            Gets the item highlighting text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewSelectedTextColor">
+            <summary>
+            Gets the item selected text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewSelectedHighlightedTextColor">
+            <summary>
+            Gets the selected and highlighted item text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewPressedTextColor">
+            <summary>
+            Gets the item pressed text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewDisabledBackColor">
+            <summary>
+            Gets the disabled backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewDisabledForeColor">
+            <summary>
+            Gets the disabled forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewDisabledBorderColor">
+            <summary>
+            Gets the disabled border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewScrollButtonBackColor">
+            <summary>
+            Gets the scrollbutton backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewScrollButtonPressedBackColor">
+            <summary>
+            Gets the scrollbutton pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewScrollButtonForeColor">
+            <summary>
+            Gets the scrollbutton forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewScrollButtonBorderColor">
+            <summary>
+            Gets the scrollbutton border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayGroupViewRenderer.GroupViewDragDropLineColor">
+            <summary>
+            Gets the dragdrop line color
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer">
+            <summary>
+            This class represents rendered class for office2016 black theme
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewBackColor">
+            <summary>
+            Holds the backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewForeColor">
+            <summary>
+            Holds the forecolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewBorderColor">
+            <summary>
+            Holds the border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewItemSelectedBorderColor">
+            <summary>
+            Holds the item selected border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewItemHighlightedBorderColor">
+            <summary>
+            Holds the item highlighted border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewItemPressedBorderColor">
+            <summary>
+            Holds the item pressed border color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewHighlightedItemBackColor">
+            <summary>
+            Holds the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewSelectedItemBackColor">
+            <summary>
+            Holds the item selected backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Holds the item selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewPressedItemBackColor">
+            <summary>
+            Holds the item pressed backcolor
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewHighlightedTextColor">
+            <summary>
+            Holds the highlighted item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewSelectedTextColor">
+            <summary>
+            Holds the selected item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewSelectedHighlightedTextColor">
+            <summary>
+            Holds the selected and highlighted item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewPressedTextColor">
+            <summary>
+            Holds the pressed item text color
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewDisabledBackColor">
+            <summary>
+            Holds the disabled backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewDisabledBorderColor">
+            <summary>
+            Holds the disabled border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewDisabledForeColor">
+            <summary>
+            Holds the disabled forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewScrollButtonBackColor">
+            <summary>
+            Holds the scrollbutton backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewScrollButtonPressedBackColor">
+            <summary>
+            Holds the scrollbutton pressed backcolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewScrollButtonForeColor">
+            <summary>
+            Holds the scrollbutton forecolor 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewScrollButtonBorderColor">
+            <summary>
+            Holds the scrollbutton border color 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.groupViewDragDropLineColor">
+            <summary>
+            Holds the dragdrap line color 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewBackColor">
+            <summary>
+            Gets the  backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewForeColor">
+            <summary>
+            Gets the forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewBorderColor">
+            <summary>
+            Gets the border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewItemSelectedBorderColor">
+            <summary>
+            Gets the selected item border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewItemHighlightedBorderColor">
+            <summary>
+            Gets the item highlighted border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewItemPressedBorderColor">
+            <summary>
+            Gets the item pressed border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewHighlightedItemBackColor">
+            <summary>
+            Gets the item highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewSelectedItemBackColor">
+            <summary>
+            Gets the item selected backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewSelectedHighlightedItemBackColor">
+            <summary>
+            Gets the item selected and highlighted backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewPressedItemBackColor">
+            <summary>
+            Gets the item pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewHighlightedTextColor">
+            <summary>
+            Gets the item highlighted text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewSelectedTextColor">
+            <summary>
+            Gets the item selected text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewSelectedHighlightedTextColor">
+            <summary>
+            Gets the selected and highlighted item text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewPressedTextColor">
+            <summary>
+            Gets the item pressed text color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewDisabledBackColor">
+            <summary>
+            Gets the disabled backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewDisabledForeColor">
+            <summary>
+            Gets the disabled forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewDisabledBorderColor">
+            <summary>
+            Gets the disabled border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewScrollButtonBackColor">
+            <summary>
+            Gets the scrollbutton backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewScrollButtonPressedBackColor">
+            <summary>
+            Gets the scrollbutton pressed backcolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewScrollButtonForeColor">
+            <summary>
+            Gets the scrollbutton forecolor
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewScrollButtonBorderColor">
+            <summary>
+            Gets the scrollbutton border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackGroupViewRenderer.GroupViewDragDropLineColor">
+            <summary>
+            Gets the dragdrop line color
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme">
+            <summary>
+            This enum represents the color schemes of office2016 style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme.Colorful">
+            <summary>
+            This option represents the colorful theme of office2016 style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme.White">
+            <summary>
+            This option represents the white theme of office2016 style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme.DarkGray">
+            <summary>
+            This option represents the darkgray theme of office2016 style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.GroupViewOffice2016ColorScheme.Black">
+            <summary>
+            This option represents the black theme of office2016 style
             </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.ImageCollection">
@@ -31034,6 +32241,35 @@
         <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.Dispose(System.Boolean)">
             <override/>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabel.vStyle">
+            <summary>
+            Get or Set of Skin Manager Interface
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.OnVisualStyleChanged">
+            <summary>
+            Update the back color and forecolo of the control when the visual style is changed.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Processes Windows messages.
+            </summary>
+            <param name="m">The Windows System.Windows.Forms.Message to process.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.OnPaint">
+            <summary>
+            Paints the <see cref="T:Syncfusion.Windows.Forms.Tools.AutoLabel"/> control.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.DrawBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color)">
+            <summary>
+            Draw the border to the <see cref="T:Syncfusion.Windows.Forms.Tools.AutoLabel"/> contol.
+            </summary>
+            <param name="g"></param>
+            <param name="rect"></param>
+            <param name="borderColor"></param>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.AutoLabel.MesureText(System.String,System.Drawing.Font)">
             <summary>
             Calculates the size of the label's text.
@@ -31045,6 +32281,16 @@
         <member name="E:Syncfusion.Windows.Forms.Tools.AutoLabel.PropertyChanged">
             <summary>
             Fired when the LabeledControl, Gap and Position properties of this class changes.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabel.AutoLabelRenderer">
+            <summary>
+            Update the renderer for Office2016 style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabel.Style">
+            <summary>
+            Gets or sets the VisualStyle to the <see cref="T:Syncfusion.Windows.Forms.Tools.AutoLabel"/>.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabel.AutoSize">
@@ -31084,6 +32330,91 @@
         <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabel.DY">
             <summary>
             Gets or sets the effective vertical distance between the top of the AutoLabel and its labeled control.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.AutoLabelStyle">
+            <summary>
+            Specifies the style with which some controls will appear and behave.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabelStyle.Default">
+            <summary>
+            Classic appearance.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabelStyle.Office2016Colorful">
+            <summary>
+             Office2016 Colorful
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabelStyle.Office2016White">
+            <summary>
+             Office2016 White
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabelStyle.Office2016Black">
+            <summary>
+             Office2016 Black
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.AutoLabelStyle.Office2016DarkGray">
+            <summary>
+             Office2016 DarkGray
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabelRenderer.AutoLabelBackColor">
+            <summary>
+            Gets the back color of the AutoLabel for office2016 colorful style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabelRenderer.AutoLabelForeColor">
+            <summary>
+            Gets the Fore color of the AutoLabel for office2016 colorful style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabelRenderer.AutoLabelDisabledForeColor">
+            <summary>
+            Gets the Fore color of the AutoLabel, when control is disabled.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.AutoLabelRenderer.AutoLabelBorderColor">
+            <summary>
+            Gets the Border color of the AutoLabel for office2016 colorful style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayAutoLabelRenderer.AutoLabelBackColor">
+            <summary>
+            Gets the back color of the AutoLabel for office2016DarkGray style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayAutoLabelRenderer.AutoLabelForeColor">
+            <summary>
+            Gets the Fore color of the AutoLabel for office2016DarkGray style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayAutoLabelRenderer.AutoLabelBorderColor">
+            <summary>
+            Gets the Border color of the AutoLabel for office2016DarkGray style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayAutoLabelRenderer.AutoLabelDisabledForeColor">
+            <summary>
+            Gets the Border color of the AutoLabel for office2016 colorful style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackAutoLabelRenderer.AutoLabelBackColor">
+            <summary>
+            Gets the back color of the AutoLabel for office2016Black style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackAutoLabelRenderer.AutoLabelForeColor">
+            <summary>
+            Gets the Fore color of the AutoLabel for office2016Black style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackAutoLabelRenderer.AutoLabelBorderColor">
+            <summary>
+            Gets the Border color of the AutoLabel for office2016Black style.
             </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.BorderLayout">
@@ -36462,6 +37793,11 @@
             Variable to specify the default backcolor of the MessageBoxAdv.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.MessageBoxAdv.styleApplied">
+            <summary>
+            Helps to specify whether the MessageBoxStyle is changed at sample level or not.
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.MessageBoxAdv.metroColorTable">
             <summary>
             Variable for MetroColorTable
@@ -36675,6 +38011,21 @@
             <param name="image">Image to be displayed in MessageBoxAdv</param>
             <param name="imageSize">Size of image to be displayed in MessageBoxAdv</param>
             <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxAdv.GetButtonImage(System.String)">
+            <summary>
+            Method to get the image from specifed folder
+            </summary>
+            <param name="imageName">Image to retrive from the folder</param>
+            <returns>Bitmap image</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxAdv.GetButtonWidth(Syncfusion.Windows.Forms.ButtonAdv,System.Drawing.Graphics)">
+            <summary>
+            Method to get the width of the button
+            </summary>
+            <param name="btnAdv">ButtonAdv</param>
+            <param name="g">Graphics variable</param>
+            <returns>Width of the button</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.MessageBoxAdv.Show(System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton)">
             <summary>
@@ -37031,6 +38382,11 @@
         <member name="F:Syncfusion.Windows.Forms.Office2007Form.dropShadow">
             <summary>
             Variable to Gets or Set Value to Drop Shadow to the form.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2007Form.managedColorTable">
+            <summary>
+            Gets or sets the managed color table value.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Office2007Form.ResetDropShadow">
@@ -38103,6 +39459,25 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "F:Syncfusion.Windows.Forms.MessageBoxFormAdv.details" -->
+        <member name="F:Syncfusion.Windows.Forms.MessageBoxFormAdv.canInitializeCustomButtons">
+            <summary>
+            Variable which indicates whether custom buttons are already initialized or not
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxFormAdv.GetMaximumWidth(System.Windows.Forms.DialogResult[],System.Int32)">
+            <summary>
+            Method to set same width for all Buttons in the MessageBoxAdv
+            </summary>
+            <param name="buttonsAdv">Collection of buttons</param>
+            <param name="maximumWidth">Greater width</param>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.MessageBoxFormAdv.GetPanelHeight">
+            <summary>
+            Method to calculate the height of the panel of MessageBoxAdv
+            </summary>
+            <returns>Panel height</returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.MessageBoxFormAdv.#ctor(System.Windows.Forms.IWin32Window,System.String,System.String,System.Windows.Forms.MessageBoxButtons,System.Windows.Forms.MessageBoxIcon,System.Windows.Forms.MessageBoxDefaultButton,System.Windows.Forms.MessageBoxOptions,System.Boolean,System.ComponentModel.CancelEventHandler,System.Drawing.Image,System.Drawing.Size,System.String)">
             <summary>
             Initializes the new instance for MessageBoxMetroStyleFormAdv class.
@@ -40195,6 +41570,46 @@
             <note type="note">This method only support horizontal progress bars. We will add support for static drawing of vertical progress bars in the future.</note>
             </remarks>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv._progressRectangle">
+            <summary>
+            Holds the progress rectangle bounds
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isForeColorChanged">
+            <summary>
+            Gets or sets a value indicating whether the fore color is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isGradientStartColorChanged">
+            <summary>
+            Gets or sets a value indicating whether the GradientStartColor is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isGradientEndColorChanged">
+            <summary>
+            Gets or sets a value indicating whether GradientEndColor is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isBackGradientStartColorChanged">
+            <summary>
+            Gets or sets a value indicating whether BackGradientStartColor is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isBackGradientEndColorChanged">
+            <summary>
+            Gets or sets a value indicating whether BackGradientEndColor is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isFontColorChanged">
+            <summary>
+            Gets or sets a value indicating whether FontColor is changed or not.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.isBorderColorChanged">
+            <summary>
+            Gets or sets a value indicating whether BorderColor is changed or not.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeGradientStartColor">
             <summary>
              Serialize the gradient color
@@ -40263,6 +41678,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.visualStyle">
+            <summary>
+            Get or Set of Skin Manager Interface
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBorderStyle">
             <summary>
             Serialize the borderstyle
@@ -40270,7 +41690,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBorderStyle">
             <summary>
-            
+            Reset the border style
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBorderColor">
@@ -40281,6 +41701,83 @@
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBorderColor">
             <summary>
             Resets the bordercolor
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeFontColor">
+            <summary>
+            Determines whether FontColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if FontColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetFontColor">
+            <summary>
+            Resets the FontColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBackTubeStartColor">
+            <summary>
+            Determines whether BackTubeStartColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if BackTubeStartColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBackTubeStartColor">
+            <summary>
+            Resets the BackTubeStartColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBackTubeEndColor">
+            <summary>
+            Determines whether BackTubeEndColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if BackTubeEndColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBackTubeEndColor">
+            <summary>
+            Resets the BackTubeEndColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeTubeEndColor">
+            <summary>
+            Determines whether TubeEndColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if TubeEndColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetTubeEndColor">
+            <summary>
+            Resets the TubeEndColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeTubeStartColor">
+            <summary>
+            Determines whether TubeStartColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if TubeStartColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetTubeStartColor">
+            <summary>
+            Resets the TubeStartColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBackGradientStartColor">
+            <summary>
+            Determines whether BackGradientStartColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if BackGradientStartColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBackGradientStartColor">
+            <summary>
+            Resets the BackGradientStartColor back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ShouldSerializeBackGradientEndColor">
+            <summary>
+            Determines whether BackGradientEndColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if BackGradientEndColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ResetBackGradientEndColor">
+            <summary>
+            Resets the BackGradientEndColor back to its default value.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.RefreshBrushes">
@@ -40304,6 +41801,15 @@
             <summary>
             Draws the dual gradient of the ProgressBar when gradient is selected.
             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.DrawOffice2016Style(System.Drawing.Graphics,System.Drawing.Rectangle,System.Boolean,System.Boolean)">
+            <summary>
+            Draws the dual gradient color of the progress bar when office2016 theme is selected.
+            </summary>
+            <param name="g"></param>
+            <param name="rc"></param>
+            <param name="segmented"></param>
+            <param name="fore"></param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.DrawImage(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Image)">
             <summary>
@@ -40375,6 +41881,11 @@
         <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.Renderer">
             <summary>
             Gets/Sets the Renderer of the ProgressBarAdv.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ProgressBarRenderer">
+            <summary>
+             Gets the Office2016 style colors respective to the ProgressBarAdv style
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.Value">
@@ -40584,6 +42095,10 @@
              -Tube
              -Image
              -System
+             -Office2016Colorful
+             -Office2016Black
+             -Office2016White
+             -Office2016DarkGray
             </summary>
             <remarks>
             By default, its value is constant.
@@ -40641,6 +42156,10 @@
         <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.BackgroundStyle">
             <summary>
             Gets / sets the style of the background. It can have the following values:
+            -Office2016Colorful
+            -Office2016Black
+            -Office2016White
+            -Office2016DarkGray
             -Image
             -Gradient
             -Vertical gradient
@@ -40668,6 +42187,11 @@
             <remarks>
             By default, its value is Horizontal.
             </remarks>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarAdv.ProgressRectangle">
+            <summary>
+            Gets or sets value indicating whether progress rectangle bounds value
+            </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.IProgressBarAdvRenderer">
             <summary>
@@ -40844,9 +42368,166 @@
             Gets the Value
             </summary>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer">
+            <summary>
+            This class represents renderer class for Office2016 color support
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.GetColortable(Syncfusion.Windows.Forms.Tools.ProgressBarStyles)">
+            <summary>
+            Constructor for renderer class
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.ProgressBarAdvBackColor">
+            <summary>
+            Gets the ProgressBarAdv back color 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.ProgressBarAdvForeColor">
+            <summary>
+            Gets the ProgressBarAdv fore color
+            </summary> 
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.ProgressBarAdvBorderColor">
+            <summary>
+            Gets the ProgressBarAdv border color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.ProgressBarAdvFontColor">
+            <summary>
+            Gets the ProgressBarAdv font color
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.ProgressBarRenderer.ProgressBarAdvProgressFontColor">
+            <summary>
+            Gets the ProgressBarAdv progress font color
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer">
+            <summary>
+            This class represents the rendered class for Office2016Colorful theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer.ProgressBarAdvBackColor">
+            <summary>
+            Gets the ProgressBarAdv back color for Office2016 colorful theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer.ProgressBarAdvForeColor">
+            <summary>
+            Gets the ProgressBarAdv fore color for Office2016 colorful theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer.ProgressBarAdvBorderColor">
+            <summary>
+            Gets the ProgressBarAdv border color for Office2016 colorful theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer.ProgressBarAdvFontColor">
+            <summary>
+            Gets the ProgressBarAdv font color for Office2016 colorful theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016ColorfulProgressBarAdvRenderer.ProgressBarAdvProgressFontColor">
+            <summary>
+            Gets the ProgressBarAdv progress font color for office2016colorful theme
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer">
+            <summary>
+            This class represents the rendered class for Office2016Black theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer.ProgressBarAdvBackColor">
+            <summary>
+             Gets the ProgressBarAdv back color for Office2016 Black theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer.ProgressBarAdvForeColor">
+            <summary>
+             Gets the ProgressBarAdv fore start color for Office2016 Black theme
+            </summary> 
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer.ProgressBarAdvBorderColor">
+            <summary>
+            Gets the ProgressBarAdv border color for Office2016 Black theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer.ProgressBarAdvFontColor">
+            <summary>
+            Gets the ProgressBarAdv font color for Office2016 Black theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackProgressBarAdvRenderer.ProgressBarAdvProgressFontColor">
+            <summary>
+            Gets the ProgressBarAdv progress font color for Office2016 Black theme
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer">
+            <summary>
+            This class represents the rendered class for Office2016White theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer.ProgressBarAdvBackColor">
+            <summary>
+            Gets the ProgressBarAdv back color for Office2016 White theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer.ProgressBarAdvForeColor">
+            <summary>
+            Gets the ProgressBarAdv fore start color for Office2016 White theme
+            </summary> 
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer.ProgressBarAdvBorderColor">
+            <summary>
+            Gets the ProgressBarAdv border color for Office2016 White theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer.ProgressBarAdvFontColor">
+            <summary>
+            Gets the ProgressBarAdv font color for Office2016 White theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteProgressBarAdvRenderer.ProgressBarAdvProgressFontColor">
+            <summary>
+            Gets the ProgressBarAdv progress font color for Office2016 White theme
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer">
+            <summary>
+            This class represents the rendered class for Office2016DarKGray theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer.ProgressBarAdvBackColor">
+            <summary>
+            Gets the ProgressBarAdv back color for Office2016 DarkGray theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer.ProgressBarAdvForeColor">
+            <summary>
+            Gets the ProgressBarAdv fore start color for Office2016 DarkGray theme
+            </summary> 
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer.ProgressBarAdvBorderColor">
+            <summary>
+            Gets the ProgressBarAdv border color for Office2016 DarkGray theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer.ProgressBarAdvFontColor">
+            <summary>
+            Gets the ProgressBarAdv font color for Office2016 DarkGray theme
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayProgressBarAdvRenderer.ProgressBarAdvProgressFontColor">
+            <summary>
+            Gets the ProgressBarAdv progress font color for Office2016 DarkGray theme
+            </summary>
+        </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.ProgressBarStyles">
             <summary>
-            Specifies the foreground styles of the ProgressBarAdv.
+            This enum represents the ProgressBarAdv foreground style
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarStyles.Constant">
@@ -40894,9 +42575,29 @@
             The foreground of the ProgressBar will be drawn by using the CustomRender class which is inherited from "IProgressBarRenderer" interface.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarStyles.Office2016Colorful">
+            <summary>
+            This option represents the Office2016Colorful foreground style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarStyles.Office2016White">
+            <summary>
+            This option represents the Office2016White foreground style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarStyles.Office2016Black">
+            <summary>
+            This option represents the Office2016Black foreground style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarStyles.Office2016DarkGray">
+            <summary>
+            This option represents the Office2016DarkGray foreground style
+            </summary>
+        </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.ProgressBarTextStyles">
             <summary>
-            Specifies the text styles.
+             This enum represents the ProgressBarAdv text styles
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarTextStyles.Percentage">
@@ -40916,7 +42617,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles">
             <summary>
-            Specifies the background styles that the ProgressBar can draw.
+             This enum represents the ProgressBarAdv background styles
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.Image">
@@ -40947,6 +42648,26 @@
         <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.System">
             <summary>
             The background is drawn by the system.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.Office2016Colorful">
+            <summary>
+            This option represents the Office2016Colorful background style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.Office2016Black">
+            <summary>
+            This option represents the Office2016Black background style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.Office2016White">
+            <summary>
+            This option represents the Office2016White background style
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.Office2016DarkGray">
+            <summary>
+            This option represents the Office2016DarkGray background style
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.ProgressBarBackgroundStyles.None">
@@ -52503,6 +54224,11 @@
             Stream that contains the dictionary.
             </summary>
         </member>
+        <member name="F:Syncfusion.Text.SpellChecker.visualStyle">
+            <summary>
+            Get or Set of Skin Manager Interface
+            </summary>
+        </member>
         <member name="M:Syncfusion.Text.SpellChecker.ShouldSerializeChangeAllText">
             <summary>
             Serializing the ChangeAllText property
@@ -52520,6 +54246,28 @@
             Serializing the CloseReason property
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Text.SpellChecker.ShouldSerializeVisualStyle">
+            <summary>
+            Determines whether VisualStyle has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if VisualStyle were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Text.SpellChecker.ResetVisualStyle">
+            <summary>
+            Resets the VisualStyle back to its default value.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Text.SpellChecker.ShouldSerializeMetroColor">
+            <summary>
+            Determines whether MetroColor has been modified and its contents should be serialized at design-time.
+            </summary>
+            <returns>True if MetroColor were changed; False otherwise.</returns>
+        </member>
+        <member name="M:Syncfusion.Text.SpellChecker.ResetMetroColor">
+            <summary>
+            Resets the MetroColor back to its default value.
+            </summary>
         </member>
         <member name="M:Syncfusion.Text.SpellChecker.ResetChangeAllText">
             <summary>
@@ -54080,6 +55828,11 @@
             Base color for managed scheme.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2007Colors.isManagedColorNotAlive">
+            <summary>
+            Gets or sets a value indicating whether managed color is alive or not.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Office2007Colors.GetColorTable(Syncfusion.Windows.Forms.Office2007Theme)">
             <summary>
             Gets color table for Office2007 visual style.
@@ -55237,6 +56990,11 @@
         <member name="F:Syncfusion.Windows.Forms.Office2010Colors.s_managedColors">
             <summary>
             
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Office2010Colors.isManagedColorNotAlive">
+            <summary>
+            Gets or sets a value indicating whether managed color is alive or not.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Office2010Colors.s_defaultTheme">
@@ -58455,6 +60213,11 @@
             Cached BackColor of ComboBox.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.ComboDropDown.cachedForeColor">
+            <summary>
+            Cached BackColor of ComboBox.
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Tools.ComboDropDown.suppressdropdownevent">
             <summary>
             Indicates whether to suppress the DropDown Event
@@ -60763,6 +62526,16 @@
             Holds the Visual Style of EditableList
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.EditableList.OnStyleChanged(Syncfusion.Windows.Forms.Appearance)">
+            <summary>
+            Gets or sets the Visual Style for the EditableList
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.EditableList.office2016colorscheme">
+            <summary>
+            Represents the Variable assiged with the default value.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.EditableList.ResetStyle">
             <summary>
             Reset the Style
@@ -60774,6 +62547,16 @@
             Serializes the Style
             </summary>
             
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.EditableList.m_SetFocus">
+            <summary>
+            Represents the Variable with Bool Contraint.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.EditableList.visualTheme">
+            <summary>
+            Gets or sets an advanced appearance for the EditableList.
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.EditableList.ShouldSerializeListBoxTextAlignment">
             <summary>
@@ -60793,9 +62576,6 @@
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="M:Syncfusion.Windows.Forms.Tools.EditableList.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
-            <override/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.EditableList.StartEditing">
             <summary>
@@ -60894,7 +62674,7 @@
             Returns the <see cref="T:System.Windows.Forms.ListBox"/> associated with this control.
             </summary>
             <remarks>
-            You should access the list box to add items to it.
+            To access the list box to add items to it.
             </remarks>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.TextBox">
@@ -60902,7 +62682,7 @@
             Returns the <see cref="T:System.Windows.Forms.TextBox"/> associated with this control.
             </summary>
             <remarks>
-            This textbox represents the textbox used in the editable current row.
+             Represents the textbox used in the editable current row.
             </remarks>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.Button">
@@ -60910,7 +62690,7 @@
             Returns the <see cref="T:System.Windows.Forms.Button"/> associated with this control.
             </summary>
             <remarks>
-            This button represents the button drawn at the right of the current row.
+            Represents the button drawn at the right of the current row.
             </remarks>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.WantButton">
@@ -60919,14 +62699,24 @@
             </summary>
             <value>True if button should be shown; False otherwise. Default is True.</value>
         </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.EditableListRenderer">
+            <summary>
+            Gets the theme colors for the Visual style.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.Office2016ColorScheme">
+            <summary>
+            Gets or Sets the colorschemes for the EditableList.
+            </summary>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.Style">
             <summary>
-            Gets or sets the Visual Style for the EditableList
+            Represents the property to set the Style.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.SetFocus">
             <summary>
-            Gets/Sets whether to draw focus when item is selected.
+            Gets or Sets whether to draw focus when item is selected.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Tools.EditableList.Editing">
@@ -61011,6 +62801,41 @@
             Gets a value indication the designer action
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.CustomListBox.DrawBackground(System.Windows.Forms.DrawItemEventArgs,Syncfusion.Windows.Forms.Tools.Editablelistrenderer)">
+            <summary>
+            Draws the Background Color using renderer file
+            </summary>
+            <param name="e"></param>
+            <param name="renderer"></param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.CustomListBox.DrawText(System.Windows.Forms.DrawItemEventArgs,Syncfusion.Windows.Forms.Tools.Editablelistrenderer)">
+            <summary>
+            Draws the text.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Forms.DrawItemEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.CustomListBox.cachedBackColor">
+            <summary>
+             Represents the variable to store the Back color.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.CustomListBox.stylechanged">
+            <summary>
+            Represents the variable to store Style change state.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.CustomListBox.OnBackColorChanged(System.EventArgs)">
+            <summary>
+            represents if stylechanged is true.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.CustomListBox.OnDrawItem(System.Windows.Forms.DrawItemEventArgs)">
+            <summary>
+            Method to Draw Item.
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Tools.CustomListBox.OnMeasureItem(System.Windows.Forms.MeasureItemEventArgs)">
              <summary>
             
@@ -61059,6 +62884,234 @@
             Gets or sets listbox text alignment
             </summary>
             <value>The style.</value>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Editablelistrenderer">
+            <summary>
+            Editablelistrenderer Class contains all the color properties which are required for Office 2016 Colorful theme.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.normalBackColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 Colorful 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.normalTextColor">
+            <summary>
+            Represents the Color values for Fore color during Normal state in Office 2016 Colorful 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.selectedBackColor">
+            <summary>
+            Represents the Color values for Back color during Selected state in Office 2016 Colorful 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.selectedTextColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 Colorful 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.wantButtonBackColor">
+            <summary>
+            Represents the Color values for Back color for Button in Office 2016 Colorful 
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.GetColorTable(Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme)">
+            <summary>
+             Gets the color table according to the theme.
+            </summary>
+            <param name="theme"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.NormalBackColor">
+            <summary>
+            Gets the value of Back color in normal state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.NormalTextColor">
+            <summary>
+            Gets the value of Text color in normal state 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.SelectedBackColor">
+            <summary>
+            Gets the value of Back color when selected 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.SelectedTextColor">
+            <summary>
+            Gets the value of Text color when selected
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Editablelistrenderer.WantButtonBackColor">
+            <summary>
+            Gets the value of Back color for want button
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer">
+            <summary>
+            Office2016 Black EditableRenderer class is inherited from the Editablelistrenderer class
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.normalBackColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 Black
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.normalTextColor">
+            <summary>
+            Represents the Color values for Fore color during Normal state in Office 2016 Black 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.selectedBackColor">
+            <summary>
+            Represents the Color values for Back color during Selected state in Office 2016 Black 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.selectedTextColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 Black 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.wantButtonBackColor">
+            <summary>
+            Represents the Color values for Back color for Button in Office 2016 Black 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.NormalBackColor">
+            <summary>
+            Gets the value of Back color in normal state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.NormalTextColor">
+            <summary>
+             Gets the value of Text color in normal state 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.SelectedBackColor">
+            <summary>
+            Gets the value of Back color when selected 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.SelectedTextColor">
+            <summary>
+            Gets the value of Text color when selected
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016BlackEditableRenderer.WantButtonBackColor">
+            <summary>
+            Gets the value of Back color for want button
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer">
+            <summary>
+            Office2016 White EditableRenderer class is inherited from the Editablelistrenderer class
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.normalBackColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 White
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.normalTextColor">
+            <summary>
+            Represents the Color values for Fore color during Normal state in Office 2016 White 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.selectedBackColor">
+            <summary>
+            Represents the Color values for Back color during Selected state in Office 2016 White 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.selectedTextColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 White 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.wantButtonBackColor">
+            <summary>
+            Represents the Color values for Back color for Button in Office 2016 White 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.NormalBackColor">
+            <summary>
+            Gets the value of Back color in normal state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.NormalTextColor">
+            <summary>
+             Gets the value of Text color in normal state 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.SelectedBackColor">
+            <summary>
+            Gets the value of Back color when selected 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.SelectedTextColor">
+            <summary>
+            Gets the value of Text color when selected
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016WhiteEditableRenderer.WantButtonBackColor">
+            <summary>
+            Gets the value of Back color for want button
+            </summary>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer">
+            <summary>
+            Office2016 DarkGray EditableRenderer class is inherited from the Editablelistrenderer class
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.normalBackColor">
+            <summary>
+            Represents the Color values for Fore color during Normal state in Office 2016 DarkGray 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.normalTextColor">
+            <summary>
+            Represents the Color values for Fore color during Normal state in Office 2016 DarkGray 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.selectedBackColor">
+            <summary>
+            Represents the Color values for Back color during Selected state in Office 2016 DarkGray 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.selectedTextColor">
+            <summary>
+            Represents the Color values for Back color during Normal state in Office 2016 DarkGray 
+            </summary>
+            
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.wantButtonBackColor">
+            <summary>
+            Represents the Color values for Back color for Button in Office 2016 DarkGray 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.NormalBackColor">
+            <summary>
+            Gets the value of Back color in normal state
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.NormalTextColor">
+            <summary>
+             Gets the value of Text color in normal state 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.SelectedBackColor">
+            <summary>
+            Gets the value of Back color when selected 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.SelectedTextColor">
+            <summary>
+            Gets the value of Text color when selected 
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Tools.Office2016DarkGrayEditableRenderer.WantButtonBackColor">
+            <summary>
+            Gets the value of Back color for want button
+            </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.FolderBrowser">
              <summary>

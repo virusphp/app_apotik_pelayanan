@@ -43,6 +43,8 @@ Public Class FormKoreksiKurang
             Stok = "stok006"
         ElseIf pkdapo = "007" Then
             Stok = "stok007"
+        ElseIf pkdapo = "017" Then
+            Stok = "stok017"
         End If
         Try
             konek()
@@ -285,9 +287,9 @@ Public Class FormKoreksiKurang
             CMD.Connection = CONN
             CMD.Transaction = Trans
             Try
-                sqlKoreksiStok = "insert into ap_koreksiapo_kurang(kdbagian, nmbagian, kdkasir, nmkasir, tanggal, nokoreksi, kd_barang, idx_barang, nama_barang, harga, jml, nmsatuan, jmlharga, keterangan, posting) values ('" & pkdapo & "', '" & pnmapo & "', '" & Trim(FormLogin.LabelKode.Text) & "', '" & Trim(FormLogin.LabelNama.Text) & "', '" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNoKoreksi.Text) & "', '" & Trim(txtKodeObat.Text) & "', '" & Trim(txtIdObat.Text) & "', '" & Trim(Rep(lblNamaObat.Text)) & "', '" & Val(txtHarga.DecimalValue) & "', '" & Val(txtJumlahKoreksi.DecimalValue) & "', '" & Trim(txtKdSatuan.Text) & "', '" & Val(txtTotalHarga.DecimalValue) & "', '" & Trim(txtKeterangan.Text) & "', '1')"
+                sqlKoreksiStok = "insert into ap_koreksiapo_kurang(kdbagian, nmbagian, kdkasir, nmkasir, tanggal, nokoreksi, kd_barang, idx_barang, nama_barang, harga, jml, nmsatuan, jmlharga, keterangan, posting) values ('" & pkdapo & "', '" & pnmapo & "', '" & Trim(FormLogin.LabelKode.Text) & "', '" & Trim(FormLogin.LabelNama.Text) & "', '" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNoKoreksi.Text) & "', '" & Trim(txtKodeObat.Text) & "', '" & Trim(txtIdObat.Text) & "', '" & Trim(Rep(lblNamaObat.Text)) & "', '" & Val(txtHarga.DecimalValue) & "', '" & Num_En_US(txtJumlahKoreksi.DecimalValue) & "', '" & Trim(txtKdSatuan.Text) & "', '" & Val(txtTotalHarga.DecimalValue) & "', '" & Trim(txtKeterangan.Text) & "', '1')"
 
-                sqlKoreksiStok = sqlKoreksiStok + vbCrLf + "update barang_farmasi SET " & Stok & "=" & Stok & "-" & Val(txtJumlahKoreksi.DecimalValue) & " where kd_barang='" & Trim(txtKodeObat.Text) & "'"
+                sqlKoreksiStok = sqlKoreksiStok + vbCrLf + "update barang_farmasi SET " & Stok & "=" & Stok & "-" & Num_En_US(txtJumlahKoreksi.DecimalValue) & " where kd_barang='" & Trim(txtKodeObat.Text) & "'"
 
                 CMD.CommandText = sqlKoreksiStok
                 CMD.ExecuteNonQuery()

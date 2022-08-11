@@ -663,6 +663,21 @@ Public Class FormMutasiAntarUnit
         DTPBantu.Value = DateAdd("m", 1, DTPTanggalTrans.Value)
         Bulan = Month(DTPBantu.Value)
         Tahun = Year(DTPBantu.Value)
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' Cek Stok
+        If CekKunciStokPenjualan = "Y" Then
+            For i = 0 To gridDetailObat.RowCount - 2
+                CMD = New OleDb.OleDbCommand("select idx_barang,kd_barang,nama_barang, " & memStok & " as stok, kd_satuan_kecil from barang_farmasi where kd_barang='" & gridDetailObat.Rows(i).Cells("kd_barang").Value & "'", CONN)
+                DA = New OleDb.OleDbDataAdapter(CMD)
+                DT = New DataTable
+                DA.Fill(DT)
+                If DT.Rows.Count > 0 Then
+                    If DT.Rows(0).Item("stok") < gridDetailObat.Rows(i).Cells("jml").Value Then
+                        MsgBox("Stok " + Trim(DT.Rows(0).Item("nama_barang")) + " hanya " + DT.Rows(0).Item("stok").ToString + " masukan ulang jumlah barang", vbInformation, "Informasi")
+                        Exit Sub
+                    End If
+                End If
+            Next
+        End If
         cekTutupStokUnitTujuan()
         If DT.Rows.Count > 0 Then
             MsgBox("Tidak bisa melakukan transaksi!!! " & vbCrLf & "Bulan dan tahun tersebut unit tujuan sudah tutup stok", vbInformation, "Informasi")

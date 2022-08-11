@@ -323,7 +323,10 @@ Public Class FormPenjualanResep
 					INNER JOIN Kamar ON Tempat_Tidur.kd_kamar = Kamar.kd_kamar 
 					INNER JOIN Sub_Unit ON Kamar.kd_sub_unit = Sub_Unit.kd_sub_unit 
 					LEFT OUTER JOIN Penjamin_Pasien ON Registrasi.no_RM = Penjamin_Pasien.no_RM and Registrasi.kd_penjamin = Penjamin_Pasien.kd_penjamin
-					where Registrasi.jns_rawat='" & JenisRawat & "' and Registrasi.status_keluar=0 order by registrasi.tgl_reg Desc", CONN)
+					where
+                    Registrasi.jns_rawat='" & JenisRawat & "' 
+                    and Registrasi.status_keluar=0 
+                    order by registrasi.tgl_reg Desc", CONN)
             DS = New DataSet
             DA.Fill(DS, "pasienRI")
             BDDataPasienRI.DataSource = DS
@@ -1769,8 +1772,10 @@ Public Class FormPenjualanResep
                         WHERE registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  
                         AND registrasi.jns_rawat='" & JenisRawat & "' AND registrasi.status_keluar <> '2' 
                         AND registrasi.no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
-                        AND registrasi.no_reg IN (Select no_reg from kwitansi_header where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
-                        AND jenis_pasien<>'UMUM') order by registrasi.no_reg", CONN)
+                        AND registrasi.no_reg IN (Select no_reg from kwitansi_header 
+                                where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
+                        AND jenis_pasien<>'UMUM') 
+                        order by registrasi.no_reg", CONN)
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -1779,7 +1784,16 @@ Public Class FormPenjualanResep
                     Exit Sub
                 End If
             ElseIf cmbJenisRawat.SelectedIndex = 2 Then
-                CMD = New OleDb.OleDbCommand("select registrasi.tgl_reg as tgl_reg,registrasi.no_reg as no_reg, registrasi.no_rm, pasien.nama_pasien, registrasi.jns_rawat as jns_rawat, registrasi.jenis_pasien, registrasi.status_keluar from registrasi inner join pasien on registrasi.no_rm=pasien.no_rm where registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  AND registrasi.jns_rawat='" & JenisRawat & "' AND registrasi.status_keluar <> '2' AND registrasi.no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' AND registrasi.no_reg IN (Select no_reg from kwitansi_header where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "') order by registrasi.no_reg", CONN)
+                CMD = New OleDb.OleDbCommand("select registrasi.tgl_reg as tgl_reg,registrasi.no_reg as no_reg, registrasi.no_rm, 
+                    pasien.nama_pasien, registrasi.jns_rawat as jns_rawat, registrasi.jenis_pasien, registrasi.status_keluar 
+                    from registrasi inner join pasien on registrasi.no_rm=pasien.no_rm 
+                    where registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  
+                    AND registrasi.jns_rawat='" & JenisRawat & "' 
+                    AND registrasi.status_keluar <> '2' 
+                    AND registrasi.no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
+                    AND registrasi.no_reg IN (Select no_reg from kwitansi_header 
+                        where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "') 
+                    order by registrasi.no_reg", CONN)
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -1999,7 +2013,8 @@ Public Class FormPenjualanResep
                         INNER JOIN Rawat_Jalan ON Registrasi.no_reg = Rawat_Jalan.no_reg 
                         INNER JOIN Sub_Unit ON Rawat_Jalan.kd_poliklinik = Sub_Unit.kd_sub_unit 
                         where registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  
-                        AND registrasi.jns_rawat='" & JenisRawat & "' AND registrasi.status_keluar <> '2' 
+                        AND registrasi.jns_rawat='" & JenisRawat & "' 
+                        AND registrasi.status_keluar <> '2' 
                         AND registrasi.no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
                         AND registrasi.no_reg IN (Select no_reg 
                         FROM kwitansi_header 
@@ -2847,6 +2862,7 @@ Public Class FormPenjualanResep
                 btnCetakNota.Enabled = True
                 btnCetakEtiket.Enabled = True
                 btnCetakNota.Focus()
+                ServiceApi.updateTaskAntrianBPJS(txtNoReg.Text, "6")
             Catch ex As Exception
                 Try
                     Trans.Rollback()

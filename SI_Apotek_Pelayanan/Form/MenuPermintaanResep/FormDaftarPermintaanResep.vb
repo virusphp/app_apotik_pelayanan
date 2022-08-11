@@ -5,85 +5,157 @@ Imports Syncfusion.XlsIO
 
 Public Class FormDaftarPermintaanResep
     Inherits Office2010Form
-    Dim BDPermintaanObat As New BindingSource
+    Public BDPermintaanObat As New BindingSource
+
+    Public DRWPermintaanObat As DataRowView
+    Dim CurrrentRow As Integer
+
+    Public DSPermintaan As New DataSet
+    Public DAPermintaan As OleDb.OleDbDataAdapter
 
     Sub tampilPermintaanObat()
         Try
-            DA = New OleDb.OleDbDataAdapter("SELECT DBSIMRM.dbo.RJ_Permintaan_Obat.No_Permintaan_Obat, 
-                    DBSIMRM.dbo.RJ_Permintaan_Obat.No_Reg, DBSIMRM.dbo.RJ_Permintaan_Obat.No_RM, 
-                    DBSIMRS.dbo.Pasien.nama_pasien, DBSIMRM.dbo.RJ_Permintaan_Obat.Tgl_Permintaan, 
-                    DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Dokter, DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Sub_Unit, 
-                    DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Farmasi, DBSIMRM.dbo.RJ_Permintaan_Obat.User_Id, 
-                    DBSIMRS.dbo.Pegawai.nama_pegawai, DBSIMRS.dbo.Sub_Unit.nama_sub_unit, 
-                    DBSIMRS.dbo.ap_seting_apotek.nmapo, 
-                    CASE DBSIMRS.dbo.Pegawai.gelar_depan WHEN '-' THEN '' 
-                    ELSE DBSIMRS.dbo.Pegawai.gelar_depan + '.' END + DBSIMRS.dbo.Pegawai.nama_pegawai + 
-                    CASE DBSIMRS.dbo.Pegawai.gelar_belakang WHEN '-' THEN '' 
-                    ELSE ', ' + DBSIMRS.dbo.Pegawai.gelar_belakang END AS Nama_Gelar, 
-                    DBSIMRM.dbo.RJ_Permintaan_Obat.Status 
-                    FROM DBSIMRM.dbo.RJ_Permintaan_Obat 
-                    INNER JOIN DBSIMRS.dbo.Sub_Unit ON DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Sub_Unit = DBSIMRS.dbo.Sub_Unit.kd_sub_unit 
-                    INNER JOIN DBSIMRS.dbo.Pegawai ON DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Dokter = DBSIMRS.dbo.Pegawai.kd_pegawai 
-                    INNER JOIN DBSIMRS.dbo.ap_seting_apotek ON DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Farmasi = DBSIMRS.dbo.ap_seting_apotek.kdapo 
-                    INNER JOIN DBSIMRS.dbo.Pasien ON DBSIMRM.dbo.RJ_Permintaan_Obat.No_RM = DBSIMRS.dbo.Pasien.no_RM 
-                    WHERE DBSIMRM.dbo.RJ_Permintaan_Obat.Kd_Farmasi='" & pkdapo & "' 
-                    AND (DBSIMRM.dbo.RJ_Permintaan_Obat.Tgl_Permintaan 
+            DAPermintaan = New OleDb.OleDbDataAdapter("SELECT 
+                    po.No_Permintaan_Obat, 
+                    po.No_Reg, 
+                    po.No_RM, 
+                    ps.nama_pasien, 
+                    po.tgl_Permintaan, 
+                    po.kd_dokter, 
+                    po.kd_sub_unit, 
+                    po.kd_farmasi, 
+                    po.user_Id, 
+                    pg.nama_pegawai  as nama_dokter, 
+                    su.nama_sub_unit as nama_klinik, 
+                    asa.nmapo, 
+                    CASE pg.gelar_depan WHEN '-' THEN '' 
+                        ELSE pg.gelar_depan + '.' END + pg.nama_pegawai +
+                    CASE pg.gelar_belakang WHEN '-' THEN ''
+                        ELSE ', ' + pg.gelar_belakang END AS Nama_Gelar,
+                    po.status,
+                    CASE po.iteration
+                        WHEN '0' THEN 
+                        'Tidak' 
+                        ELSE
+                        'Ya'
+                    END as iteration,
+                    po.iteration_banyak,
+                    th.no_pengkajian_resep, 
+                    th.keterangan, 
+                    Case  isnull(th.no_pengkajian_resep,'') when '' then 'B' else 'S' end as status_pengkajian
+                    FROM DBSIMRM.dbo.RJ_Permintaan_Obat as po 
+                    LEFT JOIN DBSIMRM.dbo.rj_pengkajian_resep_header as th ON po.no_permintaan_obat = th.no_permintaan_obat 
+                    INNER JOIN DBSIMRS.dbo.Sub_Unit as su ON po.Kd_Sub_Unit = su.kd_sub_unit 
+                    INNER JOIN DBSIMRS.dbo.Pegawai as pg ON po.Kd_Dokter = pg.kd_pegawai 
+                    INNER JOIN DBSIMRS.dbo.ap_seting_apotek as asa ON po.Kd_Farmasi = asa.kdapo 
+                    INNER JOIN DBSIMRS.dbo.Pasien as ps ON po.No_RM = ps.no_RM 
+                    WHERE po.Kd_Farmasi='" & pkdapo & "' 
+                    AND (CONVERT(date,po.tgl_Permintaan) 
                     BETWEEN '" & Format(DTPTanggal1.Value, "yyyy/MM/dd") & "' AND '" & Format(DTPTanggal2.Value, "yyyy/MM/dd") & "')", CONN)
-            DS = New DataSet
-            DA.Fill(DS, "PermintaanObat")
-            BDPermintaanObat.DataSource = DS
+            DSPermintaan = New DataSet
+            DAPermintaan.Fill(DSPermintaan, "PermintaanObat")
+            BDPermintaanObat.RemoveFilter()
+            BDPermintaanObat.DataSource = DSPermintaan
             BDPermintaanObat.DataMember = "PermintaanObat"
-            With gridPermintaanObat
-                .DataSource = Nothing
-                .DataSource = BDPermintaanObat
-                .Columns(0).Width = 50
-                .Columns(1).HeaderText = "No Permintaan"
-                .Columns(1).Width = 100
-                .Columns(2).HeaderText = "No Registrasi"
-                .Columns(2).Width = 80
-                .Columns(3).HeaderText = "No RM"
-                .Columns(3).Width = 50
-                .Columns(4).HeaderText = "Nama Pasien"
-                .Columns(4).Width = 180
-                .Columns(5).HeaderText = "Tanggal / Jam Permintaan"
-                .Columns(5).Width = 110
-                .Columns(6).Visible = False     'kdDokter
-                .Columns(7).Visible = False     'kdSubUnit
-                .Columns(8).Visible = False     'kdFarmasi
-                .Columns(9).Visible = False     'userID
-                .Columns(10).HeaderText = "Petugas Entry"
-                .Columns(10).Width = 180
-                .Columns(11).HeaderText = "Permintaan Dari Unit"
-                .Columns(11).Width = 180
-                .Columns(12).Visible = False
-                .Columns(13).HeaderText = "Dokter Pemberi Resep"
-                .Columns(13).Width = 180
-                .Columns(14).Visible = False
-                .ReadOnly = True
-            End With
+            txtTotalPermintanResep.Text = BDPermintaanObat.Count
+            setHeaderGRID()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
 
-    Sub GridWarna()
-        'For i As Integer = 0 To gridPermintaanObat.RowCount - 1
-        '    If Val(gridPermintaanObat.Rows(i).Cells("status").Value) = "0" Then
-        '        gridPermintaanObat.Rows(i).Cells("No_Permintaan_Obat").Style.BackColor = Color.Red
-        '    End If
-        'Next
+    Sub setHeaderGRID()
+        BDPermintaanObat.DataSource = DSPermintaan
+        BDPermintaanObat.DataMember = "PermintaanObat"
         With gridPermintaanObat
+            .DataSource = Nothing
+            .DataSource = BDPermintaanObat
+            .Columns(0).Width = 50
+            .Columns(1).HeaderText = "No Permintaan"
+            .Columns(1).Width = 100
+            .Columns(2).HeaderText = "No Registrasi"
+            .Columns(2).Width = 80
+            .Columns(3).HeaderText = "No RM"
+            .Columns(3).Width = 50
+            .Columns(4).HeaderText = "Nama Pasien"
+            .Columns(4).Width = 180
+            .Columns(5).HeaderText = "Tanggal / Jam Permintaan"
+            .Columns(5).Width = 110
+            .Columns(6).Visible = False     'kdDokter
+            .Columns(7).Visible = False     'kdSubUnit
+            .Columns(8).Visible = False     'kdFarmasi
+            .Columns(9).Visible = False     'userID
+            .Columns(10).HeaderText = "Petugas Entry"
+            .Columns(10).Width = 150
+            .Columns(11).HeaderText = "Permintaan Dari Unit"
+            .Columns(11).Width = 150
+            .Columns(12).Visible = False
+            .Columns(13).HeaderText = "Dokter Pemberi Resep"
+            .Columns(13).Width = 180
+            .Columns(14).Visible = False
+            .Columns(15).Visible = False
+            .Columns(16).Visible = False
+            .Columns(17).Visible = False
+            .Columns(18).Visible = False
+            .Columns(19).HeaderText = "Pengkajian"
+            .Columns(19).DataPropertyName = "status_pengkajian"
+            .Columns(19).Width = 80
+            .ReadOnly = True
+
+            .Refresh()
             .AlternatingRowsDefaultCellStyle.BackColor = Color.LightYellow
             .AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
             .ReadOnly = True
+            refreshWarnaGRID()
+        End With
+    End Sub
+
+    Sub refreshWarnaGRID()
+        With gridPermintaanObat
             For i As Integer = 0 To .RowCount - 1
-                If .Rows(i).Cells("status").Value = 1 Then
+                If .Rows(i).Cells("status").Value = 0 Then
+                    .Rows(i).DefaultCellStyle.BackColor = Color.White
+                    .DefaultCellStyle.WrapMode = DataGridViewTriState.True
+                ElseIf .Rows(i).Cells("status").Value = 0 And IsDBNull(.Rows(i).Cells("no_pengkajian_resep").Value) = False Then
+                    .Rows(i).DefaultCellStyle.BackColor = Color.LightCyan
+                    .DefaultCellStyle.WrapMode = DataGridViewTriState.True
+                ElseIf .Rows(i).Cells("status").Value = 1 And IsDBNull(.Rows(i).Cells("no_pengkajian_resep").Value) = False Then
                     .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
                     .DefaultCellStyle.WrapMode = DataGridViewTriState.True
+                ElseIf .Rows(i).Cells("status").Value = 1 And IsDBNull(.Rows(i).Cells("no_pengkajian_resep").Value) Then
+                    .Rows(i).DefaultCellStyle.BackColor = Color.Gold
+                    .DefaultCellStyle.WrapMode = DataGridViewTriState.True
+                End If
+
+                If .Rows(i).Cells("status_pengkajian").Value = "B" Then
+                    .Rows(i).Cells("status_pengkajian").Style.BackColor = Color.Red
+                ElseIf .Rows(i).Cells("status_pengkajian").Value = "S" Then
+                    .Rows(i).Cells("status_pengkajian").Style.BackColor = Color.LawnGreen
+
                 End If
             Next
         End With
     End Sub
+
+    Public Sub updateStatusPengkajian(ByVal no_permintaan_obat As String, ByVal status_pengkajian As String, ByVal no_pengkajian_resep As String)
+        BDPermintaanObat.Filter = "no_permintaan_obat = '" + no_permintaan_obat + "'"
+        If BDPermintaanObat.Count > 0 Then
+            BDPermintaanObat.MoveFirst()
+            DRWPermintaanObat = BDPermintaanObat.Current
+            DRWPermintaanObat("no_pengkajian_resep") = no_pengkajian_resep
+            DRWPermintaanObat("status_pengkajian") = status_pengkajian
+            DRWPermintaanObat.EndEdit()
+        End If
+        BDPermintaanObat.RemoveFilter()
+        refreshWarnaGRID()
+
+        If gridPermintaanObat.Rows.Count > CurrrentRow + 1 Then
+            gridPermintaanObat.Focus()
+            Me.gridPermintaanObat.Rows(CurrrentRow + 1).Selected = True
+            Me.gridPermintaanObat.CurrentCell = gridPermintaanObat.Item(0, CurrrentRow + 1)
+        End If
+    End Sub
+
 
     Private Sub FormDaftarPermintaanResep_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setApo()
@@ -91,7 +163,6 @@ Public Class FormDaftarPermintaanResep
 
     Private Sub btnProsesTab5_Click(sender As Object, e As EventArgs) Handles btnProsesTab5.Click
         tampilPermintaanObat()
-        GridWarna()
     End Sub
 
     Private Sub btnBaruTab5_Click(sender As Object, e As EventArgs) Handles btnBaruTab5.Click
@@ -99,14 +170,45 @@ Public Class FormDaftarPermintaanResep
     End Sub
 
     Private Sub gridPermintaanObat_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridPermintaanObat.CellContentClick
-        If e.ColumnIndex = 0 Then
-            FormDetailPermintaanObat.TampilResepObatJadi(gridPermintaanObat.Rows(e.RowIndex).Cells("no_Permintaan_Obat").Value)
-            FormDetailPermintaanObat.TampilResepObatRacikan(gridPermintaanObat.Rows(e.RowIndex).Cells("no_Permintaan_Obat").Value)
-            FormDetailPermintaanObat.txtNoPermintaan.Text = gridPermintaanObat.Rows(e.RowIndex).Cells("no_Permintaan_Obat").Value
-            FormDetailPermintaanObat.txtRM.Text = gridPermintaanObat.Rows(e.RowIndex).Cells("No_RM").Value
-            FormDetailPermintaanObat.txtNamaPasien.Text = gridPermintaanObat.Rows(e.RowIndex).Cells("nama_pasien").Value
-            FormDetailPermintaanObat.ShowDialog()
+        Dim senderGrid = DirectCast(sender, DataGridView)
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
+           e.RowIndex >= 0 Then
+            CurrrentRow = e.RowIndex
+            If e.ColumnIndex = 0 Then
+                Dim NO_PERMINTAAN As String = gridPermintaanObat.Rows(e.RowIndex).Cells("no_permintaan_Obat").Value
+                Dim NO_PENGKAJIAN_RESEP As String = If(IsDBNull(gridPermintaanObat.Rows(e.RowIndex).Cells("no_pengkajian_resep").Value), "", gridPermintaanObat.Rows(e.RowIndex).Cells("no_pengkajian_resep").Value)
+                Dim NAMA_DOKTER As String = gridPermintaanObat.Rows(e.RowIndex).Cells("nama_dokter").Value
+                Dim NAMA_KLINIK As String = gridPermintaanObat.Rows(e.RowIndex).Cells("nama_klinik").Value
+                Dim ITERATION As String = gridPermintaanObat.Rows(e.RowIndex).Cells("iteration").Value
+                Dim ITERATION_BANYAK As String = gridPermintaanObat.Rows(e.RowIndex).Cells("iteration_banyak").Value
+                Dim NO_RM As String = gridPermintaanObat.Rows(e.RowIndex).Cells("no_rm").Value
+                Dim NAMA_PASIEN As String = gridPermintaanObat.Rows(e.RowIndex).Cells("nama_pasien").Value
+
+                BDPermintaanObat.Filter = "no_permintaan_obat = '" + NO_PERMINTAAN + "'"
+                If MessageBox.Show("Apa anda ingin menelaah Resep dokter ? " + NAMA_DOKTER, "Informasi", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                    FormDetailPermintaanObat.TampilResepObatJadi(NO_PERMINTAAN)
+                    FormDetailPermintaanObat.TampilResepObatRacikan(NO_PERMINTAAN)
+                    FormDetailPermintaanObat.TampilDataTelaah(NO_PERMINTAAN)
+                    FormDetailPermintaanObat.TampilDataTelaahHeader(NO_PERMINTAAN)
+
+                    FormDetailPermintaanObat.NO_PENGKAJIAN_RESEP_EDIT = NO_PENGKAJIAN_RESEP
+                    FormDetailPermintaanObat.txtNoPermintaan.Text = NO_PERMINTAAN
+                    FormDetailPermintaanObat.txtNamaDokter.Text = NAMA_DOKTER
+                    FormDetailPermintaanObat.txtPoliklinik.Text = NAMA_KLINIK
+                    FormDetailPermintaanObat.txtIterasi.Text = ITERATION
+                    FormDetailPermintaanObat.txtBanyakIterasi.Text = ITERATION_BANYAK
+                    FormDetailPermintaanObat.txtRM.Text = NO_RM
+                    FormDetailPermintaanObat.txtNamaPasien.Text = NAMA_PASIEN
+                    FormDetailPermintaanObat.ShowDialog()
+                Else
+                    BDPermintaanObat.RemoveFilter()
+                    refreshWarnaGRID()
+                End If
+
+            End If
         End If
+
+
     End Sub
 
     Private Sub btnKeluar_Click(sender As Object, e As EventArgs) Handles btnKeluar.Click
@@ -169,6 +271,10 @@ Public Class FormDaftarPermintaanResep
         Else
             BDPermintaanObat.RemoveFilter()
         End If
-        GridWarna()
+        refreshWarnaGRID()
+    End Sub
+
+    Private Sub FormDaftarPermintaanResep_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Me.Dispose()
     End Sub
 End Class

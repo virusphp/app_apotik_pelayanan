@@ -264,7 +264,16 @@ Public Class FormReturRI
 
     Sub tampilObat()
 		Try
-			DA = New OleDb.OleDbDataAdapter("SELECT noid, tanggal, notaresep, LTRIM(RTRIM(nmdokter)), LTRIM(RTRIM(nama_barang)) as nama_barang, jmlpaket, jmlnonpaket, jml, LTRIM(RTRIM(nmsatuan)) FROM ap_jualr2 WHERE no_reg='" & txtNoReg.Text & "' ORDER BY tanggal,notaresep,noid", CONN)
+			DA = New OleDb.OleDbDataAdapter("SELECT 
+				noid, tanggal, notaresep, LTRIM(RTRIM(nmdokter)), LTRIM(RTRIM(nama_barang)) as nama_barang, jmlpaket, jmlnonpaket, 
+				jml, total_retur, LTRIM(RTRIM(nmsatuan)) FROM ap_jualr2 
+
+                CROSS APPLY (select isnull(sum(ap_returinap2.totalqty),0) from ap_returinap2 
+                where ap_returinap2.kd_barang = ap_jualr2.kd_barang 
+                and ap_returinap2.idx_barang = ap_jualr2.idx_barang 
+                and ap_returinap2.notaresep = ap_jualr2.notaresep) as total_retur(total_retur)
+
+				WHERE no_reg='" & txtNoReg.Text & "' ORDER BY tanggal,notaresep,noid", CONN)
 			DS = New DataSet
 			DA.Fill(DS, "ObatInap")
 			BDObatInap.DataSource = DS
@@ -286,7 +295,10 @@ Public Class FormReturRI
 				.Columns(8).HeaderText = "Total Qty"
 				.Columns(8).DefaultCellStyle.Format = "N2"
 				.Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-				.Columns(9).HeaderText = "Satuan"
+				.Columns(9).HeaderText = "Total Retur"
+				.Columns(9).DefaultCellStyle.Format = "N2"
+				.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+				.Columns(10).HeaderText = "Satuan"
 				.Columns(0).Width = 30
 				.Columns(2).Width = 75
 				.Columns(3).Width = 90
@@ -295,7 +307,8 @@ Public Class FormReturRI
 				.Columns(6).Width = 50
 				.Columns(7).Width = 50
 				.Columns(8).Width = 50
-				.Columns(9).Width = 90
+				.Columns(9).Width = 50
+				.Columns(10).Width = 90
 				.Columns(1).Visible = False
 				.BackgroundColor = Color.Azure
 				.DefaultCellStyle.SelectionBackColor = Color.LightBlue
@@ -333,6 +346,22 @@ Public Class FormReturRI
 				txtJmlResepAwal.DecimalValue = Trim(DT.Rows(0).Item("jmlnet"))
 				txtDijaminResepAwal.DecimalValue = DT.Rows(0).Item("dijamin")
 				txtIurResepAwal.DecimalValue = DT.Rows(0).Item("sisabayar")
+			End If
+
+			CMD = New OleDb.OleDbCommand("select kd_barang, nama_barang, idx_barang, sum(jmlretpkt) as jmlretpkt, sum(jmlretnpkt) as jmlretnpkt, sum(totalqty) as totalqty FROM ap_returinap2 WHERE notaresep='" & txtNotaResep.Text & "' and kd_barang='" & txtKodeObat.Text & "' and idx_barang='" & txtIdxBarang.Text & "' group by idx_barang, kd_barang, nama_barang", CONN)
+			DA = New OleDb.OleDbDataAdapter(CMD)
+			DT = New DataTable
+			DA.Fill(DT)
+			If DT.Rows.Count > 0 Then
+				If DT.Rows(0).Item("totalqty") = txtTotalQty.DecimalValue Then
+					MsgBox("Stok " + Trim(DT.Rows(0).Item("nama_barang")) + " Sudah Di retur dengan jumlah " + Num_En_US(DT.Rows(0).Item("totalqty")) + " !!!", vbInformation, "Informasi")
+					kosongkanDetail()
+					Exit Sub
+				End If
+				'OVERIDE txtJumlahpaket
+				txtJmlPaket.DecimalValue = txtJmlPaket.DecimalValue - Num_En_US(DT.Rows(0).Item("jmlretpkt"))
+				txtJmlNonPaket.DecimalValue = txtJmlNonPaket.DecimalValue - Num_En_US(DT.Rows(0).Item("jmlretnpkt"))
+				txtTotalQty.DecimalValue = txtTotalQty.DecimalValue - Num_En_US(DT.Rows(0).Item("totalqty"))
 			End If
 
 			CMD = New OleDb.OleDbCommand("select * FROM barang_farmasi WHERE kd_barang='" & txtKodeObat.Text & "'", CONN)
@@ -855,6 +884,20 @@ Public Class FormReturRI
 			txtRetPaket.Focus()
 			Exit Sub
 		End If
+
+		'---------------------------------------------------------Cek Stok sudah retur 2022
+		CMD = New OleDb.OleDbCommand("select kd_barang, nama_barang, idx_barang, sum(jmlretpkt) as jmlretpkt, sum(jmlretnpkt) as jmlretnpkt, sum(totalqty) as totalqty FROM ap_returinap2 WHERE notaresep='" & txtNotaResep.Text & "' and kd_barang='" & txtKodeObat.Text & "' and idx_barang='" & txtIdxBarang.Text & "' group by idx_barang, kd_barang, nama_barang", CONN)
+		DA = New OleDb.OleDbDataAdapter(CMD)
+		DT = New DataTable
+		DA.Fill(DT)
+		If DT.Rows.Count > 0 Then
+			If DT.Rows(0).Item("totalqty") = txtTotalQty.DecimalValue Then
+				MsgBox("Stok " + Trim(DT.Rows(0).Item("nama_barang")) + " Sudah Di retur dengan jumlah " + Num_En_US(DT.Rows(0).Item("totalqty")) + " !!!", vbInformation, "Informasi")
+				kosongkanDetail()
+				Exit Sub
+			End If
+		End If
+
 		For barisGrid As Integer = 0 To gridDetailObat.RowCount - 1
 			If noidBarang = gridDetailObat.Rows(barisGrid).Cells("noid").Value Then
 				MsgBox("Obat ini sudah dientry")
@@ -928,9 +971,11 @@ Public Class FormReturRI
 			Trans = CONN.BeginTransaction(IsolationLevel.ReadCommitted)
 			CMD.Connection = CONN
 			CMD.Transaction = Trans
+
 			Try
 				'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 				''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' Trans Ke Apotek
+				sqlReturObatInap = "UPDATE ap_jualr1 SET status_retur=1 WHERE notaresep='" & Trim(txtNotaResep.Text) & "'"
 				'konek()
 				sqlReturObatInap = "insert into ap_returinap1(kdkasir, nmkasir, kdbagian, tanggal, notaretur, no_reg, no_rm , nama_pasien, umurthn, umurbln, kd_penjamin, nm_penjamin, kddokter, nmdokter, jmlretpkt, jmlretpktblt, jmlretnpkt, jmlretnpktblt, totalretur, totalreturblt, dijamin, dijaminblt, iurpasien, iurpasienblt, posting)VALUES('" & Trim(FormLogin.LabelKode.Text) & "', '" & Trim(FormLogin.LabelNama.Text) & "', '" & pkdapo & "', '" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNoRetur.Text) & "', '" & Trim(txtNoReg.Text) & "', '" & Trim(txtRM.Text) & "', '" & Trim(txtNamaPasien.Text) & "', '" & Trim(txtUmurThn.Text) & "', '" & Trim(txtUmurBln.Text) & "', '" & Trim(kdPenjamin) & "', '" & Trim(NamaPenjamin) & "', '" & Trim(kdDokter) & "', '" & Trim(NamaDokter) & "', '" & Num_En_US(txtGrandJmlHargaRetPaket.DecimalValue) & "', '" & Num_En_US(txtGrandJmlHargaRetPaketBulat.DecimalValue) & "', '" & Num_En_US(txtGrandJmlHargaRetNonPaket.DecimalValue) & "', '" & Num_En_US(txtGrandJmlHargaRetNonPaketBulat.DecimalValue) & "', '" & Num_En_US(txtGrandTotalRetur.DecimalValue) & "', '" & Num_En_US(txtGrandTotalReturBulat.DecimalValue) & "', '" & Num_En_US(txtGrandDijamin.DecimalValue) & "', '" & Num_En_US(txtGrandDijaminBulat.DecimalValue) & "', '" & Num_En_US(txtGrandIurBayar.DecimalValue) & "', '" & Num_En_US(txtGrandIurBayarBulat.DecimalValue) & "', '1')"
 				'CMD.ExecuteNonQuery()
@@ -969,16 +1014,16 @@ Public Class FormReturRI
 				btnCetakNota.Enabled = True
 			Catch ex As Exception
 				MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
-				MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
-				Try
-					Trans.Rollback()
-				Catch ex2 As Exception
-					MsgBox(" Rollback Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
 					MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
+					Try
+						Trans.Rollback()
+					Catch ex2 As Exception
+						MsgBox(" Rollback Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
+						MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
+					End Try
 				End Try
-			End Try
-		End If
-	End Sub
+			End If
+    End Sub
 
     Private Sub btnCetakNota_Click(sender As Object, e As EventArgs) Handles btnCetakNota.Click
         FormPemanggil = "FormReturRI"

@@ -15,7 +15,7 @@ Public Class FormPenjualanResepEMR
         nmObatPelayanan, kdObatPermintaan, jmlObatPermintaan, status_iteration, iteration_banyak, iteration_terlayani As String
     Public nmSubUnit, bilang, nmTakaran, nmWaktu, nmKeterangan, kd_barang_permintaan, idx_permintaan_obat, jenisPelayanan,
            nama_barang, status, gridKlik As String
-    Public lastKlik As Integer
+    Public currentRowClick As Integer
     Dim tglLahirPasien As DateTime
     Dim HargaBeli, DiskonDinkes As Double
     Dim BDEtiket, BDEtiketModel4 As New BindingSource
@@ -325,14 +325,30 @@ Public Class FormPenjualanResepEMR
                     .Columns(8).Visible = False
                     .Columns(9).Visible = False
                     .ReadOnly = True
+                    'For i As Integer = 0 To .RowCount - 1
+                    '    If status = 1 And status_iteration = "1" And iteration_terlayani < 3 Then
+                    '        .Rows(i).DefaultCellStyle.BackColor = Color.LightBlue
+                    '        .DefaultCellStyle.WrapMode = DataGridViewTriState.True
+                    '    ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = 3 Then
+                    '        .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+                    '    ElseIf status = 1 And status_iteration = "0" Then
+                    '        .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+                    '    ElseIf status = 0 Then
+                    '        .Rows(i).DefaultCellStyle.BackColor = Color.WhiteSmoke
+                    '    End If
+                    'Next
                     For i As Integer = 0 To .RowCount - 1
-                        If status = 1 And status_iteration = "1" And iteration_terlayani < 3 Then
+                        If (.Rows(i).Cells("status").Value = 1 And .Rows(i).Cells("status_iteration").Value = 1 And .Rows(i).Cells("iteration_terlayani").Value < 3) Then
                             .Rows(i).DefaultCellStyle.BackColor = Color.LightBlue
                             .DefaultCellStyle.WrapMode = DataGridViewTriState.True
-                        ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = 3 Then
+                        ElseIf .Rows(i).Cells("status").Value = 1 Or .Rows(i).Cells("status_iteration").Value = 1 And .Rows(i).Cells("iteration_terlayani").Value = 3 Then
                             .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
-                        ElseIf status = 1 And status_iteration = "0" Then
+                        ElseIf .Rows(i).Cells("status").Value = 1 And .Rows(i).Cells("status_iteration").Value = 0 Then
                             .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+                        ElseIf .Rows(i).Cells("status").Value = 0 And .Rows(i).Cells("status_iteration").Value = 0 Then
+                            .Rows(i).DefaultCellStyle.BackColor = Color.White
+                        ElseIf .Rows(i).Cells("status").Value = 0 And .Rows(i).Cells("status_iteration").Value = 1 Then
+                            .Rows(i).DefaultCellStyle.BackColor = Color.White
                         End If
                     Next
                 End With
@@ -700,6 +716,9 @@ Public Class FormPenjualanResepEMR
                 Else
                     cmbDijamin.Focus()
                 End If
+                If txtJumlahJual.Text = 0 Then
+                    cmbRacikNon.Focus()
+                End If
             ElseIf cmbPkt.Text = "Paket Khusus" Then
                 txtIdObatKh.Text = Trim(DT.Rows(0).Item("idx_barang"))
                 lblNamaObatKh.Text = Trim(DT.Rows(0).Item("nama_barang"))
@@ -868,16 +887,28 @@ Public Class FormPenjualanResepEMR
 
     Sub tampilPasienRJ()
         Try
-            DA = New OleDb.OleDbDataAdapter("SELECT Registrasi.tgl_reg, Registrasi.no_reg, Registrasi.no_RM, 
-                    LTRIM(RTRIM(pasien.nama_pasien)) as nama_pasien, Sub_Unit.nama_sub_unit, 
-                    Registrasi.jenis_pasien,Registrasi.kd_penjamin,Registrasi.no_SJP FROM Registrasi 
-                    INNER JOIN Pasien ON Registrasi.no_RM = Pasien.no_RM 
-                    INNER JOIN Rawat_Jalan ON Registrasi.no_reg = Rawat_Jalan.no_reg 
-                    INNER JOIN DBSIMRM.dbo.rj_permintaan_obat on registrasi.no_reg = rj_permintaan_obat.no_reg
-                    INNER JOIN Sub_Unit ON Rawat_Jalan.kd_poliklinik = Sub_Unit.kd_sub_unit 
-                    WHERE registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "' 
-                    AND Registrasi.jns_rawat='" & JenisRawat & "' 
-                    AND Registrasi.status_keluar <> 2 order by registrasi.no_reg Asc", CONN)
+            DA = New OleDb.OleDbDataAdapter("SELECT 
+                    r.tgl_reg, 
+                    r.no_reg, 
+                    r.no_RM, 
+                    LTRIM(RTRIM(p.nama_pasien)) as nama_pasien, 
+                    sub.nama_sub_unit, 
+                    r.jenis_pasien,
+                    r.kd_penjamin,
+                    r.no_SJP, 
+                    po.status,
+                    th.no_pengkajian_resep, 
+                    th.keterangan, 
+                    Case  isnull(th.no_pengkajian_resep,'') when '' then 'B' else 'S' end as status_pengkajian
+                    FROM Registrasi as r
+                    INNER JOIN Pasien as p ON r.no_RM = p.no_RM 
+                    INNER JOIN Rawat_Jalan as rj ON r.no_reg = rj.no_reg 
+                    INNER JOIN DBSIMRM.dbo.rj_permintaan_obat as po on r.no_reg = po.no_reg
+                    LEFT JOIN DBSIMRM.dbo.rj_pengkajian_resep_header as th ON po.no_permintaan_obat = th.no_permintaan_obat 
+                    INNER JOIN Sub_Unit as sub ON rj.kd_poliklinik = sub.kd_sub_unit 
+                    WHERE r.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "' 
+                    AND r.jns_rawat='" & JenisRawat & "' 
+                    AND r.status_keluar <> 2 order by r.no_reg Asc", CONN)
             DS = New DataSet
             DA.Fill(DS, "pasienRJ")
             BDDataPasienRJ.DataSource = DS
@@ -899,6 +930,10 @@ Public Class FormPenjualanResepEMR
                 .Columns(6).Visible = False
                 .Columns(7).Visible = False
                 .Columns(8).Visible = False
+                .Columns(9).Visible = False
+                .Columns(10).Visible = False
+                .Columns(11).Visible = False
+                .Columns(12).Visible = False
                 .BackgroundColor = Color.Azure
                 .DefaultCellStyle.SelectionBackColor = Color.LightBlue
                 .DefaultCellStyle.SelectionForeColor = Color.Black
@@ -906,6 +941,13 @@ Public Class FormPenjualanResepEMR
                 .ColumnHeadersDefaultCellStyle.BackColor = Color.Black
                 .RowHeadersDefaultCellStyle.BackColor = Color.Black
                 .ReadOnly = True
+                For i As Integer = 0 To .RowCount - 1
+                    If (.Rows(i).Cells("status").Value = 0) Then
+                        .Rows(i).DefaultCellStyle.BackColor = Color.White
+                    ElseIf .Rows(i).Cells("status").Value = 1 Then
+                        .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+                    End If
+                Next
             End With
             lblKetDaftar.Text = "Daftar Pasien Rawat Jalan"
         Catch ex As Exception
@@ -1186,6 +1228,7 @@ Public Class FormPenjualanResepEMR
             rptNota.SetDatabaseLogon(dbUser, dbPassword)
             rptNota.SetParameterValue("tanggal", Format(DTPTanggalTrans.Value, "yyyy/MM/dd"))
             rptNota.SetParameterValue("notaresep", txtNoResep.Text)
+            rptNota.SetParameterValue("nopermintaan", noPermintaanObat)
             rptNota.SetParameterValue("alamat", txtAlamat.Text)
             rptNota.SetParameterValue("unit", nmSubUnit)
             rptNota.SetParameterValue("totalHarga", txtGrandTotalBulat.DecimalValue)
@@ -2385,12 +2428,13 @@ Public Class FormPenjualanResepEMR
                         WHERE registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "' 
                         AND registrasi.jns_rawat='" & JenisRawat & "' 
                         AND registrasi.status_keluar <> '2' 
-                        AND registrasi.kd_cara_bayar <> '8' 
                         AND registrasi.no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
-                        AND registrasi.no_reg IN (Select no_reg from kwitansi_header 
+                        AND registrasi.no_reg IN (Select no_reg 
+                            from kwitansi_header 
                             where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "'
                             AND jenis_pasien<>'Umum') 
                             order by registrasi.no_reg", CONN)
+                'AND registrasi.kd_cara_bayar <> '8'
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -2407,11 +2451,12 @@ Public Class FormPenjualanResepEMR
                         WHERE registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  
                         AND registrasi.jns_rawat='" & JenisRawat & "' 
                         AND registrasi.status_keluar <> '2' 
-                        AND registrasi.kd_cara_bayar <> '8' 
                         AND registrasi.no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "' 
                         AND registrasi.no_reg IN (Select no_reg from kwitansi_header 
-                                where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "') 
+                                where no_reg='" & gridPasien.Rows(e.RowIndex).Cells(2).Value & "'
+                                AND jenis_pasien<>'Umum') 
                                 order by registrasi.no_reg", CONN)
+                'AND registrasi.kd_cara_bayar <> '8' 
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -2602,9 +2647,10 @@ Public Class FormPenjualanResepEMR
                     AND registrasi.jns_rawat='" & JenisRawat & "' 
                     AND registrasi.status_keluar <> '2' 
                     AND registrasi.no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
-                    AND registrasi.no_reg IN (Select no_reg from kwitansi_header 
-                    where no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
-                    AND jenis_pasien<>'Umum') order by registrasi.no_reg", CONN)
+                    AND registrasi.no_reg IN (Select no_reg 
+                        from kwitansi_header 
+                        where no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
+                        AND jenis_pasien<>'Umum') order by registrasi.no_reg", CONN)
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -2619,9 +2665,13 @@ Public Class FormPenjualanResepEMR
                     inner join pasien on registrasi.no_rm=pasien.no_rm 
                     where registrasi.tgl_reg='" & Format(DTPPasienReg.Value, "yyyy/MM/dd") & "'  
                     AND registrasi.jns_rawat='" & JenisRawat & "' 
-                    AND registrasi.status_keluar <> '2' AND registrasi.no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
+                    AND registrasi.status_keluar <> '2' 
+                    AND registrasi.no_reg='" & gridPasien.Rows(i).Cells(2).Value & "' 
                     AND registrasi.no_reg IN (Select no_reg 
-                    from kwitansi_header where no_reg='" & gridPasien.Rows(i).Cells(2).Value & "') order by registrasi.no_reg", CONN)
+                        from kwitansi_header 
+                        where no_reg='" & gridPasien.Rows(i).Cells(2).Value & "'
+                        AND jenis_pasien<>'Umum')
+                        order by registrasi.no_reg", CONN)
                 DA = New OleDb.OleDbDataAdapter(CMD)
                 DT = New DataTable
                 DA.Fill(DT)
@@ -2956,13 +3006,13 @@ Public Class FormPenjualanResepEMR
             If gridKlik = "gridObatJadi" Then
                 gridObatJadi.Focus()
                 gridObatJadi.ClearSelection()
-                gridObatJadi.CurrentCell = gridObatJadi.Item(0, lastKlik)
-                gridObatJadi.Rows(lastKlik).Selected = True
+                gridObatJadi.CurrentCell = gridObatJadi.Item(0, currentRowClick)
+                gridObatJadi.Rows(currentRowClick).Selected = True
             ElseIf gridKlik = "gridObatRacikan" Then
                 gridObatRacikan.Focus()
                 gridObatRacikan.ClearSelection()
-                gridObatRacikan.CurrentCell = gridObatRacikan.Item(0, lastKlik)
-                gridObatRacikan.Rows(lastKlik).Selected = True
+                gridObatRacikan.CurrentCell = gridObatRacikan.Item(0, currentRowClick)
+                gridObatRacikan.Rows(currentRowClick).Selected = True
             End If
             btnSimpan.Enabled = True
         End If
@@ -3000,13 +3050,13 @@ Public Class FormPenjualanResepEMR
             If gridKlik = "gridObatJadi" Then
                 gridObatJadi.Focus()
                 gridObatJadi.ClearSelection()
-                gridObatJadi.CurrentCell = gridObatJadi.Item(0, lastKlik)
-                gridObatJadi.Rows(lastKlik).Selected = True
+                gridObatJadi.CurrentCell = gridObatJadi.Item(0, currentRowClick)
+                gridObatJadi.Rows(currentRowClick).Selected = True
             ElseIf gridKlik = "gridObatRacikan" Then
                 gridObatRacikan.Focus()
                 gridObatRacikan.ClearSelection()
-                gridObatRacikan.CurrentCell = gridObatRacikan.Item(0, lastKlik)
-                gridObatRacikan.Rows(lastKlik).Selected = True
+                gridObatRacikan.CurrentCell = gridObatRacikan.Item(0, currentRowClick)
+                gridObatRacikan.Rows(currentRowClick).Selected = True
             End If
             btnSimpanKh.Enabled = True
         End If
@@ -3422,6 +3472,21 @@ Public Class FormPenjualanResepEMR
         End If
     End Sub
 
+    Private Sub btnTelaah_Click(sender As Object, e As EventArgs)
+
+        FormPengkajianResep.txtNoPermintaanResep.Text = noPermintaanObat
+        FormPengkajianResep.NO_PENGKAJIAN_RESEP = noPermintaanObat
+        FormPengkajianResep.NO_PENGKAJIAN_RESEP_EDIT = noPermintaanObat
+        FormPengkajianResep.txtNoReg.Text = txtNoReg.Text
+        FormPengkajianResep.txtNo_RM.Text = txtNoReg.Text
+        FormPengkajianResep.txtNamaPasien.Text = txtNamaPasien.Text
+        FormPengkajianResep.txtIteration.Text = status_iteration
+        FormPengkajianResep.txtJmlIter.Text = iteration_banyak
+        FormPengkajianResep.isiPengkajian(noPermintaanObat)
+        FormPengkajianResep.tampolHeader(noPermintaanObat)
+        FormPengkajianResep.ShowDialog()
+    End Sub
+
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
         cariSubUnitAsal()
         cariNamaPenjamin()
@@ -3469,10 +3534,22 @@ Public Class FormPenjualanResepEMR
             Try
                 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' Trans Ke Apotek
-                sqlPenjualanObat = "insert into ap_jualr1 (stsrawat,kdkasir,nmkasir,tanggal,notaresep,no_reg,no_rm,nama_pasien,kd_penjamin,
-                                    nm_penjamin,kddokter,nmdokter,kdbagian,stsresep,totalpaket,totalpaket_bulat,totalnonpaket,totalnonpaket_bulat,
-                                    totaldijamin,totaldijamin_bulat,totalselisih_bayar,totalselisih_bayar_bulat,kd_sub_unit,kd_sub_unit_asal,
-                                    nama_sub_unit,jam,rsp_pulang,posting,diserahkan,no_permintaan_obat) 
+                sqlPenjualanObat = "insert into ap_jualr1 (
+                                    stsrawat,kdkasir,
+                                    nmkasir,tanggal,
+                                    notaresep,no_reg,
+                                    no_rm,nama_pasien,kd_penjamin,
+                                    nm_penjamin,kddokter,
+                                    nmdokter,kdbagian,
+                                    stsresep,totalpaket,
+                                    totalpaket_bulat,
+                                    totalnonpaket,totalnonpaket_bulat,
+                                    totaldijamin,totaldijamin_bulat,
+                                    totalselisih_bayar,totalselisih_bayar_bulat,
+                                    kd_sub_unit,kd_sub_unit_asal,
+                                    nama_sub_unit,jam,
+                                    rsp_pulang,posting,
+                                    diserahkan,no_permintaan_obat) 
                                     values ('" & StatusRawat & "', '" & Trim(FormLogin.LabelKode.Text) & "', '" & Trim(FormLogin.LabelNama.Text) & "', 
                                     '" & Format(DTPTanggalTrans.Value, "yyyy/MM/dd") & "', '" & Trim(txtNoResep.Text) & "', 
                                     '" & Trim(txtNoReg.Text) & "', '" & Trim(txtRM.Text) & "', '" & Trim(txtNamaPasien.Text) & "', 
@@ -3551,19 +3628,19 @@ Public Class FormPenjualanResepEMR
                 End If
 
                 '''''''''''''''''''''''''''''''''''''''''''''''' SAVE TO SIMRM'''''''''''''''''''''''''
-                If status = 1 And status_iteration = "1" And iteration_terlayani = 0 Then
+                If status = 1 And status_iteration = "1" And iteration_terlayani = "0" Then
                     sqlPenjualanObat = sqlPenjualanObat & vbCrLf & "UPDATE DBSIMRM.dbo.RJ_Permintaan_Obat 
                             SET DBSIMRM.dbo.RJ_Permintaan_Obat.status='1',
                             DBSIMRM.dbo.RJ_Permintaan_Obat.notaresep_iteration_pertama='" & Trim(txtNoResep.Text) & "',
                             DBSIMRM.dbo.RJ_Permintaan_Obat.iteration_terlayani+=1
                             WHERE DBSIMRM.dbo.RJ_Permintaan_Obat.No_Permintaan_Obat='" & noPermintaanObat & "'"
-                ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = 1 Then
+                ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = "1" Then
                     sqlPenjualanObat = sqlPenjualanObat & vbCrLf & "UPDATE DBSIMRM.dbo.RJ_Permintaan_Obat 
                             SET DBSIMRM.dbo.RJ_Permintaan_Obat.status='1',
                             DBSIMRM.dbo.RJ_Permintaan_Obat.notaresep_iteration_kedua='" & Trim(txtNoResep.Text) & "',
                             DBSIMRM.dbo.RJ_Permintaan_Obat.iteration_terlayani+=1
                             WHERE DBSIMRM.dbo.RJ_Permintaan_Obat.No_Permintaan_Obat='" & noPermintaanObat & "'"
-                ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = 2 Then
+                ElseIf status = 1 And status_iteration = "1" And iteration_terlayani = "2" Then
                     sqlPenjualanObat = sqlPenjualanObat & vbCrLf & "UPDATE DBSIMRM.dbo.RJ_Permintaan_Obat 
                             SET DBSIMRM.dbo.RJ_Permintaan_Obat.status='1',
                             DBSIMRM.dbo.RJ_Permintaan_Obat.notaresep_iteration_ketiga='" & Trim(txtNoResep.Text) & "',
@@ -3639,6 +3716,7 @@ Public Class FormPenjualanResepEMR
                 btnCetakNota.Enabled = True
                 btnCetakEtiket.Enabled = True
                 btnCetakNota.Focus()
+                ServiceApi.updateTaskAntrianBPJS(txtNoReg.Text, "6")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
@@ -3758,6 +3836,22 @@ Public Class FormPenjualanResepEMR
                 BDDataPasienRD.Filter = "nama_pasien like '%" & txtCariPasien.Text & "%'"
             End If
         End If
+        RefreshGridPasien()
+    End Sub
+
+    Sub RefreshGridPasien()
+        With gridPasien
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightYellow
+            .AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+            .ReadOnly = True
+            For i As Integer = 0 To .RowCount - 1
+                If (.Rows(i).Cells("status").Value = 0) Then
+                    .Rows(i).DefaultCellStyle.BackColor = Color.White
+                ElseIf .Rows(i).Cells("status").Value = 1 Then
+                    .Rows(i).DefaultCellStyle.BackColor = Color.LightGreen
+                End If
+            Next
+        End With
     End Sub
 
     Private Sub btnSimpanKh_Click(sender As Object, e As EventArgs) Handles btnSimpanKh.Click
@@ -3946,6 +4040,7 @@ Public Class FormPenjualanResepEMR
                 btnCetakLain.Enabled = True
                 btnCetakEtiketKh.Enabled = True
                 btnCetakBPJS.Focus()
+                ServiceApi.updateTaskAntrianBPJS(txtNoReg.Text, "6")
             Catch ex As Exception
                 MsgBox(" Commit Exception Type: {0}" & ex.GetType.ToString, vbCritical, "Kesalahan")
                 MsgBox(" Message: {0}" & ex.Message, vbCritical, "Kesalahan")
@@ -4661,7 +4756,7 @@ Public Class FormPenjualanResepEMR
         Try
             If e.ColumnIndex = 0 Then
                 'MsgBox(IsDBNull(gridObatJadi.Rows(e.RowIndex).Cells("kode_Barang").Value))
-                lastKlik = e.RowIndex
+                currentRowClick = e.RowIndex
                 gridKlik = "gridObatJadi"
                 'MsgBox(String.Empty(gridObatJadi.Rows(e.RowIndex).Cells("kode_Barang").Value))
                 idx_permintaan_obat = gridObatJadi.Rows(e.RowIndex).Cells("idx_permintaan_obat").Value
@@ -4790,7 +4885,7 @@ Public Class FormPenjualanResepEMR
     Private Sub gridObatRacikan_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridObatRacikan.CellContentClick
         Try
             If e.ColumnIndex = 0 Then
-                lastKlik = e.RowIndex
+                currentRowClick = e.RowIndex
                 gridKlik = "gridObatRacikan"
                 'MsgBox(IsDBNull(gridObatRacikan.Rows(e.RowIndex).Cells("kd_Barang").Value))
                 idx_permintaan_obat = gridObatRacikan.Rows(e.RowIndex).Cells("idx_no_racikan").Value
@@ -5190,4 +5285,7 @@ Public Class FormPenjualanResepEMR
         GBObatRacikan.Dock = DockStyle.Fill
     End Sub
 
+    Private Sub gridPasien_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles gridPasien.CellMouseClick
+
+    End Sub
 End Class
